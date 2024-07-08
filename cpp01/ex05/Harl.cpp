@@ -1,6 +1,5 @@
 #include "Harl.hpp"
 
-
 void Harl::debug()
 {
     std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!" << std::endl;
@@ -23,9 +22,14 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
-    ft fts[] = {Harl::debug, Harl::info, Harl::warning, Harl::error};
+    Harl harled;
+    ft fts[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    ft func;
     int i;
 
     i = -1;
-    while(++i < 4)
+    while(++i < std::stoi(level))
+        func = fts[i];
+    if (i <= 4)
+        (harled.*func)();
 }
