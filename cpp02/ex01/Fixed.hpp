@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 09:49:50 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/08 09:43:07 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/08 10:24:27 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ class Fixed
     ~Fixed(); //a destractor called when the object is destroyed
     int getRawBits(void) const;
     void setRawBits(int const raw);
-    // std::ostream& print(std::ostream& os) const;
+    int only_frac() const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fp);
-
 
 #endif

@@ -6,13 +6,21 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 23:35:45 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/08 09:46:48 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/08 10:58:26 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 const int Fixed::frac_bits = 8;
+
+int Fixed::only_frac() const
+{
+    int out;
+
+    out = (int)(fixed_point & ((1 << frac_bits) - 1));
+    return (out);
+}
 
 int Fixed::toInt(void) const
 {
@@ -26,7 +34,7 @@ float Fixed::toFloat(void) const
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fp)
 {
-    os << fp.toInt() << "." << fp.toFloat();
+    os << fp.toInt() << "." << fp.only_frac();
     return os;
 }
 
