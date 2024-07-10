@@ -14,14 +14,6 @@
 
 const int Fixed::frac_bits = 8;
 
-int Fixed::only_frac() const
-{
-    int out;
-
-    out = (int)(fixed_point & ((1 << frac_bits) - 1));
-    return (out);
-}
-
 int Fixed::toInt(void) const
 {
     return ((int)(fixed_point >> frac_bits));
@@ -29,12 +21,12 @@ int Fixed::toInt(void) const
 
 float Fixed::toFloat(void) const
 {
-    return ((float)((fixed_point) / (1 << frac_bits)));
+    return ((float)(((float)fixed_point) / (1 << frac_bits)));
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fp)
 {
-    os << fp.toInt() << "." << fp.only_frac();
+    os << fp.toFloat();
     return os;
 }
 
@@ -70,8 +62,8 @@ Fixed::Fixed(const int other_int)
 
 Fixed::Fixed(const float other_f)
 {
+    fixed_point = roundf(other_f * (1 << frac_bits)); 
     std::cout << "Float constructor called" << std::endl;
-    fixed_point = (((other_f) * (1 << frac_bits)));
 
 }
 
