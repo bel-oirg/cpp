@@ -1,9 +1,9 @@
-NAME = FragTrap
+NAME = DiamonTrap
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
+SRCS = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp DiamonTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamonTrap.hpp
 
 all : $(NAME)
 

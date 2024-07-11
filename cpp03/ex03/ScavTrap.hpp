@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 16:10:42 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/07/11 10:59:33 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/07/11 15:52:33 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef SCAVTRAP_H
+#define SCAVTRAP_H
 
-int main()
+#include "ClapTrap.hpp"
+
+class ScavTrap: virtual public ClapTrap
 {
-    ScavTrap a("buddha");
-    a.attack("HMIDA");
-}
+    public:
+    ScavTrap(std::string Name);
+    ~ScavTrap();
+    void guardGate();
+    void attack(const std::string& target);
+};
+
+#endif

@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamonTrap.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 16:10:42 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/07/11 12:59:45 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/07/11 15:55:54 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DIAMONTRAP_H
+#define DIAMONTRAP_H
+
+#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-int main()
+class DiamonTrap:public FragTrap, public ScavTrap
 {
-    ScavTrap a("buddha");
-    a.attack("HMIDA");
-}
+    private:
+    std::string Name;
+    unsigned int HitPoints;
+    unsigned int EnergytPoints;
+    unsigned int AttackDamage;
+
+    public:
+    DiamonTrap(std::string Name);
+    ~DiamonTrap();
+    void whoAmI();
+    using ScavTrap::attack;
+
+};
+
+#endif

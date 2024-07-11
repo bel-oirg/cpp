@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScarvTrap.hpp                                      :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:59:33 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 11:45:02 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:10:22 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCARVTRAP_H
-#define SCARVTRAP_H
+#ifndef SCAVTRAP_H
+#define SCAVTRAP_H
 
 #include "ClapTrap.hpp"
 
-class ScarvTrap:public ClapTrap
+class ScavTrap:public ClapTrap
 {
     public:
-    ScarvTrap(std::string Name);
-    ~ScarvTrap();
+    ScavTrap(std::string Name);
+    ~ScavTrap();
     void guardGate();
     void attack(const std::string& target);
 

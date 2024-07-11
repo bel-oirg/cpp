@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScarvTrap.cpp                                      :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:59:31 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 11:55:49 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:08:16 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScarvTrap.hpp"
+#include "ScavTrap.hpp"
 
-ScarvTrap::ScarvTrap(std::string Name) : ClapTrap(Name)
+ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name)
 {
     this->HitPoints = 100;
     this->AttackDamage = 20;
     this->EnergytPoints = 50;
-    std::cout << "ScarvTrap " << Name << " is initalized" << std::endl;
+    std::cout << "ScavTrap " << Name << " is initalized" << std::endl;
 }
 
-ScarvTrap::~ScarvTrap()
+ScavTrap::~ScavTrap()
 {
-    std::cout << "ScarvTrap " << " is destroyed" << std::endl;
+    std::cout << "ScavTrap " << " is destroyed" << std::endl;
 }
 
-void ScarvTrap::guardGate()
+void ScavTrap::guardGate()
 {
-    std::cout << "ScarvTrap is now in Gate Keeper Mode" << std::endl;
+    std::cout << "ScavTrap is now in Gate Keeper Mode" << std::endl;
 }
 
-void ScarvTrap::attack(const std::string& target)
+void ScavTrap::attack(const std::string& target)
 {
     if (HitPoints && EnergytPoints)
-        std::cout << "ScarvTrap :) " << Name << " attacks " << target << ", causing " << AttackDamage << "pts of damage!" << std::endl;
+        std::cout << "ScavTrap :) " << Name << " attacks " << target << ", causing " << AttackDamage << "pts of damage!" << std::endl;
     else
         std::cout << "Failed to attack" << std::endl;
 }
+
+//TODO CHANGE Scav TO SCAV

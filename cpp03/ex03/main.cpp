@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScarvTrap.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 10:59:33 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 12:10:14 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/07/11 16:01:13 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCARVTRAP_H
-#define SCARVTRAP_H
+#include "DiamonTrap.hpp"
 
-#include "ClapTrap.hpp"
-
-class ScarvTrap:public ClapTrap
+int main()
 {
-    public:
-    ScarvTrap(std::string Name);
-    ~ScarvTrap();
-    void guardGate();
-    void attack(const std::string& target);
-
-};
-
-#endif
+    DiamonTrap a("buddha");
+    // a.attack("HMIDA");
+    a.whoAmI();
+}

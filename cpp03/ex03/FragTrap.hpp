@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 16:10:42 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/07/11 12:01:48 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/07/11 15:49:04 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_H
+#define FRAGTRAP_H
 
-int main()
+#include "ClapTrap.hpp"
+
+class FragTrap: virtual public ClapTrap
 {
-    ScavTrap a("buddha");
-    a.attack("HMIDA");
-}
+    public:
+    FragTrap(std::string Name);
+    ~FragTrap();
+    void highFivesGuys();
+    void attack(const std::string& target);
+
+};
+
+#endif
