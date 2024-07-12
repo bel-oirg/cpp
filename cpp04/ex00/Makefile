@@ -1,14 +1,16 @@
 NAME = Animal
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Animal.cpp main.cpp
+SRCS = Animal.cpp WrongAnimal.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Animal.hpp
+HEADER = Animal.hpp WrongAnimal.hpp
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS) : $(HEADER)
 
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@

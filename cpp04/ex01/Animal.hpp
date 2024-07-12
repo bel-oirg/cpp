@@ -6,13 +6,14 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:34 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:12:41 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 06:54:56 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
+#include "Brain.hpp"
 #include <iostream>
 
 class Animal
@@ -41,6 +42,9 @@ class Animal
 
 class Dog:public Animal
 {
+    private:
+    Brain *brain;
+    
     public:
     Dog();
     ~Dog();
@@ -49,6 +53,9 @@ class Dog:public Animal
 
 class Cat:public Animal
 {
+    private:
+    Brain *brain;
+
     public:
     Cat();
     ~Cat();

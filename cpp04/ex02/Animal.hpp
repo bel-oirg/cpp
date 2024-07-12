@@ -6,13 +6,14 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:34 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:12:41 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:55:05 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
+#include "Brain.hpp"
 #include <iostream>
 
 class Animal
@@ -24,31 +25,44 @@ class Animal
     Animal();
     virtual ~Animal();
     /*
-    declaring the desctructor as virtual to ensure that the virtual
-    keyword that ensures both base class and the derived class
-    destructor will be called at run time, it called the derived
-    class first and then base class to release the space occupied
-    by both destructors
-    Virtual destructors are useful when you might potentially delete an instance 
-    of a derived class through a pointer to base class:
+    Abstract class contains as least one pure virtual ft
     */
     Animal(std::string name);
     Animal(const Animal &cpy);
     Animal &operator=(const Animal &cpy);
-    virtual void makeSound(void) const;
+    /*
+    You can not create an instance of an abstract base class, but you can
+    create other classes that are derived from it
+
+    I CAN NOT DO THIS : Animal cat;
+    */
+    virtual void makeSound(void) const = 0;
+    /*
+    A pure virtual function is a virtual member ft that belongs to a base
+    class and needs to be redefined in derived classes
+    */
     std::string getType(void) const;
 };
 
 class Dog:public Animal
 {
+    private:
+    Brain *brain;
+    
     public:
     Dog();
     ~Dog();
     virtual void makeSound(void) const;
+    /*
+    If I did not overrided this exact ft, also this class will become abstract
+    */
 };
 
 class Cat:public Animal
 {
+    private:
+    Brain *brain;
+
     public:
     Cat();
     ~Cat();

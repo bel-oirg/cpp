@@ -6,12 +6,11 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:19:26 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:28:23 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:36:07 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
-
 /*
 vitual ft inside a class is used to execute the ft of the most derived class
 
@@ -23,7 +22,6 @@ every class that inherit from our class, will have to provide its own implementa
 Animal::Animal(std::string name) : type(name)
 {
     std::cout << name << " Animal is initiated" << std::endl;
-
 }
 
 Animal::Animal()
@@ -47,10 +45,10 @@ Animal &Animal::operator=(const Animal &cpy)
     return (*this);
 }
 
-void    Animal::makeSound(void) const
-{
-    std::cout << "Sound of animal" << std::endl;
-}
+// void    Animal::makeSound(void) const
+// {
+//     std::cout << "Sound of animal" << std::endl;
+// }
 
 std::string Animal::getType(void) const
 {
@@ -60,10 +58,12 @@ std::string Animal::getType(void) const
 Dog::Dog() : Animal("Dog")
 {
     std::cout << "A Dog is coming" << std::endl;
+    this->brain = new Brain();
 }
 
 Dog::~Dog()
 {
+    delete this->brain;
     std::cout << "A Dog is dead" << std::endl;
 }
 
@@ -79,10 +79,12 @@ void    Cat::makeSound() const
 
 Cat::Cat() : Animal("Cat")
 {
+    this->brain = new Brain();
     std::cout << "The Cat woke up :)" << std::endl;
 }
 
 Cat::~Cat()
 {
+    delete this->brain;
     std::cout << "The Cat is dead :)" << std::endl;
 }

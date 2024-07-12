@@ -1,9 +1,9 @@
-NAME = Fixed
+NAME = AbstractBrain
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp
+SRCS = Animal.cpp WrongAnimal.cpp Brain.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp
+HEADER = Animal.hpp WrongAnimal.hpp Brain.hpp
 
 all : $(NAME)
 

@@ -10,6 +10,8 @@ all : $(NAME)
 $(NAME) : $(OBJS) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
+$(OBJS) : $(HEADER)
+
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
