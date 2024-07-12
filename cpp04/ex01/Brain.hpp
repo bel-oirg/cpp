@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 06:40:18 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 07:43:35 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 10:31:34 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class Brain
     public:
     Brain();
     ~Brain();
+    // Brain(const Brain &cpy);
+    // Brain operator(const Brain &cpy);
 };
 
 #endif

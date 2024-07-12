@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:19:26 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 09:36:07 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:21:12 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,29 @@ Animal &Animal::operator=(const Animal &cpy)
     return (*this);
 }
 
-// void    Animal::makeSound(void) const
-// {
-//     std::cout << "Sound of animal" << std::endl;
-// }
+Dog &Dog::operator=(const Dog &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this);
+}
+
+Dog::Dog(const Dog &cpy)
+{
+    *this = cpy;
+}
+
+Cat &Cat::operator=(const Cat &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this);
+}
+
+Cat::Cat(const Cat &cpy)
+{
+    *this = cpy;
+}
 
 std::string Animal::getType(void) const
 {

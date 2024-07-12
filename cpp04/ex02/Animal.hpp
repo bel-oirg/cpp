@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:34 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 09:55:05 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:23:27 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ class Dog:public Animal
     public:
     Dog();
     ~Dog();
-    virtual void makeSound(void) const;
+    Dog(const Dog& cpy);
+    Dog &operator=(const Dog& cpy);
     /*
     If I did not overrided this exact ft, also this class will become abstract
     */
+    virtual void makeSound(void) const;
 };
 
 class Cat:public Animal
@@ -66,6 +68,8 @@ class Cat:public Animal
     public:
     Cat();
     ~Cat();
+    Cat(const Cat& cpy);
+    Cat &operator=(const Cat& cpy);
     virtual void makeSound(void) const;
 };
 

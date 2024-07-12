@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:34 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:54:56 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:22:08 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ class Dog:public Animal
     public:
     Dog();
     ~Dog();
+    /*
+    Shallow copy copies all the member field values
+    Deep copy, makes the copies of dynamically allocated memory
+    */
+    Dog(const Dog& cpy);
+    Dog &operator=(const Dog& cpy);
     virtual void makeSound(void) const;
 };
 
@@ -59,6 +65,8 @@ class Cat:public Animal
     public:
     Cat();
     ~Cat();
+    Cat(const Cat& cpy);
+    Cat &operator=(const Cat& cpy);
     virtual void makeSound(void) const;
 };
 

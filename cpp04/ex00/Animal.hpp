@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:14:34 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:12:41 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:25:15 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ class Dog:public Animal
     public:
     Dog();
     ~Dog();
+    Dog(const Dog& cpy);
+    Dog &operator=(const Dog& cpy);
     virtual void makeSound(void) const;
 };
 
@@ -52,6 +54,8 @@ class Cat:public Animal
     public:
     Cat();
     ~Cat();
+    Cat(const Cat& cpy);
+    Cat &operator=(const Cat& cpy);
     virtual void makeSound(void) const;
 };
 

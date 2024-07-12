@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:19:26 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 08:34:04 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:20:53 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ Dog::~Dog()
     std::cout << "A Dog is dead" << std::endl;
 }
 
+
+
 void    Dog::makeSound() const
 {
     std::cout << "HawHaw!" << std::endl;
@@ -81,6 +83,30 @@ Cat::Cat() : Animal("Cat")
 {
     this->brain = new Brain();
     std::cout << "The Cat woke up :)" << std::endl;
+}
+
+Dog &Dog::operator=(const Dog &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this);
+}
+
+Dog::Dog(const Dog &cpy)
+{
+    *this = cpy;
+}
+
+Cat &Cat::operator=(const Cat &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this);
+}
+
+Cat::Cat(const Cat &cpy)
+{
+    *this = cpy;
 }
 
 Cat::~Cat()
