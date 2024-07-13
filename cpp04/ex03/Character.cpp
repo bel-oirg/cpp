@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:57:05 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 09:58:29 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/13 11:33:11 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void    Character::equip(AMateria *m)
         if (!this->slots[index])
         {
             this->slots[index] = m;
+            cout << this->getName() << " Equipped " << m->getType() << endl;
             return ;
         }
     }
@@ -75,8 +76,6 @@ void    Character::equip(AMateria *m)
 
 void Character::unequip(int idx)
 {
-    if (idx < 0 || idx > 3)
-        return ;
     if (this->slots[idx])
     {
         delete this->slots[idx];

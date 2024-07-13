@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:12:35 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 10:16:39 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/13 12:13:41 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,28 @@ void MateriaSource::learnMateria(AMateria* new_m)
 {
     int index = -1;
 
-    if (!new_m)
-        return ; 
     while(++index < 4)
     {
         if (!this->slots_bk[index])
         {
             this->slots_bk[index] = new_m;
+            cout << "Materia Learned " << new_m->getType() << endl;
             return ; 
         }
     }
 }
 
-AMateria* MateriaSource::createMateria(std::string const & type)
+AMateria *MateriaSource::createMateria(const std::string &type)
 {
     int index = -1;
 
     while (++index < 4)
     {
         if (this->slots_bk[index] && type == this->slots_bk[index]->getType())
-            return (this->slots_bk[index]);
+        {
+            cout << "Materia " << type << " Created" << endl;
+            return (this->slots_bk[index]->clone());
+        }
     }
     return (0);
 }
