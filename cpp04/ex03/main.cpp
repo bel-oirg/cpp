@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:19:29 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 05:07:31 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/13 06:47:43 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main()
 
     ICharacter* bob = new Character("bob");
 
+    // cout << tmp->getType() << " THIS IS TMP" << endl; 
     me->use(0, *bob);
     me->use(1, *bob);
 

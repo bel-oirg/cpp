@@ -6,13 +6,14 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:19:31 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 05:06:46 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/13 08:06:57 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
 /* ---------AMATERIA */
+
 AMateria::AMateria(std::string const & type)
 {
     cout << "AMateria " << type << " is constructed" << endl;
@@ -51,12 +52,13 @@ void AMateria::use(ICharacter& target)
 }
 
 /* ---------CURE */
+
 void Cure::use(ICharacter& target)
 {
     cout << "* heals " << target.getName() << "'s wounds *" << endl;
 }
 
-Cure::Cure()
+Cure::Cure() : AMateria("cure")
 {
     cout << "Cure Constructor is called" << endl;
 }
@@ -68,7 +70,19 @@ Cure::~Cure()
 
 Cure* Cure::clone() const
 {
-    return (new Cure()); //TODO leaks
+    return (new Cure(*this)); //TODO leaks ????/???>
+}
+
+Cure::Cure(const Cure &cpy) : AMateria(cpy.type)
+{
+    *this = cpy;
+}
+
+Cure &Cure::operator=(const Cure &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this); //TODO No need to copy type since it is intrinsic
 }
 
 /* ----------ICE */
@@ -78,9 +92,18 @@ void Ice::use(ICharacter& target)
     cout << "* shoots an ice bolt at " << target.getName() << " *" << endl;
 }
 
-Ice::Ice()
+Ice::Ice() : AMateria("ice")
 {
     cout << "Ice Constructor is called" << endl;
+}
+
+Ice::Ice(const Ice &cpy) : AMateria(cpy.type) {} //TODO
+
+Ice &Ice::operator=(const Ice &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this); //TODO No need to copy type since it is intrinsic
 }
 
 Ice::~Ice()
@@ -90,7 +113,7 @@ Ice::~Ice()
 
 Ice* Ice::clone() const
 {
-    return (new Ice()); //TODO leaks
+    return (new Ice(*this)); //TODO leaks
 }
 
 /* ----------CHARACTER */
@@ -103,7 +126,7 @@ Character::Character()
     cout << "Character's constructor is called" << endl;
 }
 
-Character::Character(std::string Name)
+Character::Character(std::string Name) : Name(Name)
 {
     int index = -1;
     while (++index < 4)
@@ -115,6 +138,24 @@ Character::Character(std::string Name)
 Character::~Character()
 {
     cout << "Character's is destroyed" << endl;
+}
+
+Character &Character::operator=(const Character &cpy)
+{
+    int index = -1;
+
+    if (this != &cpy)
+    {
+        this->Name = cpy.Name;
+        while(cpy.slots[++index])
+            this->slots[index] = cpy.slots[index];
+    }
+    return (*this); //TODO No need to copy type since it is intrinsic
+}
+
+Character::Character(const Character &cpy)
+{
+    *this = cpy;
 }
 
 const std::string &Character::getName() const
@@ -133,7 +174,7 @@ void    Character::equip(AMateria *m)
         if (!this->slots[index])
         {
             this->slots[index] = m;
-            return ; 
+            return ;
         }
     }
 }
@@ -164,6 +205,14 @@ MateriaSource::MateriaSource()
     cout << "MateriaSource constructor is called" << endl;
 }
 
+MateriaSource::~MateriaSource()
+{
+    // int index = -1;
+    // while(slots_bk[++index]) //TODO WHY I CANT
+    //     delete slots_bk[index];
+    cout << "MateriaSource is destructed" << endl;
+}
+
 void MateriaSource::learnMateria(AMateria* new_m)
 {
     int index = -1;
@@ -190,4 +239,18 @@ AMateria* MateriaSource::createMateria(std::string const & type)
             return (this->slots_bk[index]);
     }
     return (0);
+}
+
+MateriaSource::MateriaSource(const MateriaSource &cpy)
+{
+    *this = cpy;
+}
+
+MateriaSource &MateriaSource::operator=(const MateriaSource &cpy)
+{
+    int index = -1;
+
+    while(cpy.slots_bk[++index])
+        this->slots_bk[index] = cpy.slots_bk[index];
+    return (*this);
 }

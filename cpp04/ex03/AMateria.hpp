@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:01:39 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 17:16:05 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/13 07:08:22 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ class Ice:public AMateria
 {
     public:
     Ice();
-    ~Ice();
+    Ice(const Ice &cpy);
+    Ice &operator=(const Ice &cpy);
+    virtual ~Ice();
     virtual void use(ICharacter& target);
     virtual Ice* clone() const; //check this line
 };
@@ -49,7 +51,9 @@ class Cure:public AMateria
 {
     public:
     Cure();
-    ~Cure();
+    Cure(const Cure &cpy);
+    Cure &operator=(const Cure &cpy);
+    virtual ~Cure();  //TODO
     virtual void use(ICharacter& target);
     virtual Cure* clone() const;
 };
@@ -73,6 +77,8 @@ class Character : public ICharacter
     public:
     Character();
     Character(std::string Name);
+    Character(const Character &cpy);
+    Character &operator=(const Character &cpy);
     ~Character();
     virtual std::string const & getName() const;
     virtual void equip(AMateria* m);
@@ -95,6 +101,9 @@ class MateriaSource : public IMateriaSource
 
     public:
     MateriaSource();
+    virtual ~MateriaSource();
+    MateriaSource(const MateriaSource &cpy);
+    MateriaSource &operator=(const MateriaSource &cpy);
     virtual void learnMateria(AMateria*);
     virtual AMateria* createMateria(std::string const & type);
 };
