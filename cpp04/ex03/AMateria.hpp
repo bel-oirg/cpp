@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:01:39 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 15:16:29 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:16:05 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 using std::cout;
 using std::endl;
+
+class ICharacter;
+class AMateria;
 
 class AMateria
 {
@@ -65,13 +68,33 @@ class Character : public ICharacter
 {
     private:
     std::string Name;
-    AMateria *slots;
+    AMateria *slots[4];
 
     public:
     Character();
+    Character(std::string Name);
     ~Character();
     virtual std::string const & getName() const;
     virtual void equip(AMateria* m);
     virtual void unequip(int idx);
     virtual void use(int idx, ICharacter& target);
+};
+
+class IMateriaSource
+{
+    public:
+    virtual ~IMateriaSource() {}
+    virtual void learnMateria(AMateria*) = 0;
+    virtual AMateria* createMateria(std::string const & type) = 0;
+};
+
+class MateriaSource : public IMateriaSource
+{
+    private:
+    AMateria *slots_bk[4];
+
+    public:
+    MateriaSource();
+    virtual void learnMateria(AMateria*);
+    virtual AMateria* createMateria(std::string const & type);
 };
