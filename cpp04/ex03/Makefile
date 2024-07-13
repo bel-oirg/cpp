@@ -1,7 +1,7 @@
 NAME = AMateria
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = AMateria.cpp main.cpp
+SRCS = AMateria.cpp Character.cpp MateriaSource.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 HEADER = AMateria.hpp
 

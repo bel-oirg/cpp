@@ -6,18 +6,20 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 17:19:29 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 06:47:43 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/07/13 10:15:27 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
 
 int main()
 {
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
-    
+
     ICharacter* me = new Character("me");
 
     AMateria* tmp;
@@ -28,13 +30,12 @@ int main()
 
     ICharacter* bob = new Character("bob");
 
-    // cout << tmp->getType() << " THIS IS TMP" << endl; 
     me->use(0, *bob);
     me->use(1, *bob);
 
     delete bob;
     delete me;
     delete src;
-    
+
     return 0;
 }
