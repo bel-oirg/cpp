@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 11:53:46 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/07/17 11:54:00 by bel-oirg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
@@ -5,7 +17,8 @@
 #include <iostream>
 #include <stdlib.h>
 #define MAX_LEN 10
-#define MAX_CONTACT 2
+#define MAX_CONTACT 8
+
 using str = std::string;
 
 class Contact

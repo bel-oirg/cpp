@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/17 11:53:43 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/07/17 18:31:20 by bel-oirg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 Contact::Contact()
@@ -10,10 +22,7 @@ Contact::Contact()
     secret = "";
 };
 
-Contact::~Contact()
-{
-    return ;
-}
+Contact::~Contact() {}
 
 str get_field(str field)
 {
