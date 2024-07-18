@@ -1,9 +1,9 @@
-NAME = Fixed
+NAME = PhoneBook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp
+SRCS = PhoneBook.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp
+HEADER = PhoneBook.hpp
 
 all : $(NAME)
 

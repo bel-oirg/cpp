@@ -16,10 +16,13 @@
 #include <cstring>
 #include <iostream>
 #include <stdlib.h>
+#include <cstdio>
+#include <string.h>
+
+typedef std::string str;
+
 #define MAX_LEN 10
 #define MAX_CONTACT 8
-
-using str = std::string;
 
 class Contact
 {
@@ -33,8 +36,9 @@ class Contact
 
     public:
     Contact();
-    ~Contact();
+    // ~Contact();
     void    set_data(int index);
+    str     get_field(str field);
     void    get_data();
 };
 
@@ -45,6 +49,7 @@ class PhoneBook
 
     public:
     void    add_user(int index);
+    int     get_val(std::string s_num);
     void    search_user(int index);
 };
 

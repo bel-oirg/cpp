@@ -2,6 +2,7 @@
 #include <ostream>
 #include <iomanip>
 #include <iostream>
+#include <sstream> //added for ostringstram
 #include <ctime>
 
 int Account::_nbAccounts = 0;

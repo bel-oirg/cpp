@@ -22,9 +22,9 @@ Contact::Contact()
     secret = "";
 };
 
-Contact::~Contact() {}
+// Contact::~Contact() {}
 
-str get_field(str field)
+str Contact::get_field(str field)
 {
     str buffer;
 
@@ -32,7 +32,13 @@ str get_field(str field)
     {
         std::cout << "Please enter your " << field << ": ";
         std::getline(std::cin, buffer);
-        if (buffer.empty())
+        if (std::cin.eof())
+        {
+            std::cin.clear();
+            clearerr(stdin);
+            std::cout << std::endl;
+        }
+        else if (buffer.empty())
             std::cout << "The Field Cannot be Empty " << std::endl;
     } while (buffer.empty());
 
@@ -63,7 +69,7 @@ void    PhoneBook::add_user(int index)
     cts[index].set_data(index);
 }
 
-int get_val(std::string s_num)
+int PhoneBook::get_val(std::string s_num)
 {
     int sign;
     int num;
@@ -84,11 +90,10 @@ int get_val(std::string s_num)
             return (-1);
         i++;
     }
-    if (i < s_num.length() || sign * num < 0)
+    if (i < (int)s_num.length() || sign * num < 0)
         return (-1);
     return (num);
 }
-
 
 void    PhoneBook::search_user(int index)
 {
@@ -141,7 +146,16 @@ int main()
         }
         else if (cmd == "EXIT")
             exit(0);
-        else 
+        else
+        {   
+            if (std::cin.eof())
+            {
+                std::cin.clear();
+                clearerr(stdin);
+                std::cout << std::endl;
+            }
             std::cout << "USAGE : ADD | SEARCH | EXIT" << std::endl;
+        }
     }
+    return (0);
 }

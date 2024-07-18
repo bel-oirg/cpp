@@ -1,9 +1,9 @@
-NAME = Fixed
+NAME = Account
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp
+SRCS = Account.cpp tests.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp
+HEADER = Account.hpp
 
 all : $(NAME)
 
