@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             std :: In C++, the Standard Library is a collection of classes and functions
         */
         while (argv[index][++c_index])
-            std::cout << (char)toupper(argv[index][c_index]);
+            std::cout << static_cast<char>(toupper(argv[index][c_index]));
     }
     std::cout << std::endl;
 }

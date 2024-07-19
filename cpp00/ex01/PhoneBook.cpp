@@ -24,7 +24,7 @@ Contact::Contact()
 
 // Contact::~Contact() {}
 
-str Contact::get_field(str field)
+str get_field(str field)
 {
     str buffer;
 
@@ -61,7 +61,7 @@ void    Contact::set_data(int index)
 
 void    Contact::get_data()
 {
-    std::cout << "| " << index << " | " << f_name << " | " << l_name << " | " << n_name << " | " << std::endl;
+    std::cout << "|  " << index << "|  " << f_name << "|  " << l_name << "|  " << n_name << "|" << std::endl;
 }
 
 void    PhoneBook::add_user(int index)
@@ -104,8 +104,7 @@ void    PhoneBook::search_user(int index)
     counter = -1;
     while(++counter <= index)
         cts[counter].get_data();
-    std::cout << "Please Enter The Index of User :";
-    std::cin >> s_num;
+    s_num = get_field("index");
     number = get_val(s_num);
     if (number >= 0 && number <= index)
         cts[number].get_data();

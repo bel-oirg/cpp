@@ -36,9 +36,8 @@ class Contact
 
     public:
     Contact();
-    // ~Contact();
+
     void    set_data(int index);
-    str     get_field(str field);
     void    get_data();
 };
 
@@ -52,5 +51,7 @@ class PhoneBook
     int     get_val(std::string s_num);
     void    search_user(int index);
 };
+
+str get_field(str field);
 
 #endif
