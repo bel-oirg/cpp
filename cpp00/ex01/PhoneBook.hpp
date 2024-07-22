@@ -21,7 +21,7 @@
 
 typedef std::string str;
 
-#define MAX_LEN 10
+#define MAX_LEN 9
 #define MAX_CONTACT 8
 
 class Contact
