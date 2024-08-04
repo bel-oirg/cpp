@@ -12,15 +12,22 @@ int Account::_totalNbWithdrawals = 0;
 
 void    Account::_displayTimestamp(void)
 {
-    time_t  now;
-    tm      *raw;
-
+    time_t				now;
+    tm					*raw;
+    std::ostringstream	oss;
+    /*
+        std::ostringstream provides a way to create
+		a string stream that can be used to perform input
+        and output operations on strings
+    */
     now = time(0); //time now on current OS
     raw = localtime(&now);
-
-    std::ostringstream oss;
+	/*
+		setw -> to set the width by deafault filled with ' '
+		setfill -> to fill
+	*/
     oss << "["
-        << std::setw(2) << std::setfill('0') << raw->tm_year + 1900
+        << raw->tm_year + 1900
         << std::setw(2) << std::setfill('0') << raw->tm_mon + 1
         << std::setw(2) << std::setfill('0') << raw->tm_mday
         << "_" 
@@ -28,6 +35,9 @@ void    Account::_displayTimestamp(void)
         << std::setw(2) << std::setfill('0') << raw->tm_min 
         << std::setw(2) << std::setfill('0') << raw->tm_sec
         << "]";
+	/*
+		str() Returns the current contents of the string stream.
+	*/
     std::cout << oss.str();
 }
 

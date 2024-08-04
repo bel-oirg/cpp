@@ -9,7 +9,7 @@ int main()
     int index;
 
     index = -1;
-    inst = zombieHorde(4, "hell");
+    inst = zombieHorde(1, "hell");
     while (++index < N)
         inst[index].announce();
     delete[] inst;
