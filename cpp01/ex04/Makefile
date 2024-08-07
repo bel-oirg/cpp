@@ -1,9 +1,9 @@
-NAME = Fixed
+NAME = replace
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp
+SRCS = Sed.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp
+HEADER = Sed.hpp
 
 all : $(NAME)
 

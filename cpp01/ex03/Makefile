@@ -1,4 +1,4 @@
-NAME = Fixed
+NAME = violence
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp

@@ -1,9 +1,9 @@
-NAME = Fixed
+NAME = harlFilter
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp
+SRCS = Harl.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp
+HEADER = Harl.hpp
 
 all : $(NAME)
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/06 17:09:21 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/06 20:54:58 by bel-oirg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Harl.hpp"
 
 void Harl::debug()
@@ -22,14 +34,14 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
-    Harl harled;
+    std::string all_complains[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     ft fts[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    ft func;
-    int i;
-
-    i = -1;
-    while(++i < std::stoi(level))
-        func = fts[i];
-    if (i <= 4)
-        (harled.*func)();
+    Harl harled;
+    int check = ( level == "DEBUG") * 1 + ( level == "INFO") * 2 + ( level == "WARNING") * 3 + ( level == "ERROR") * 4 - 1 ;
+    if (check == -1)
+    {
+        std::cerr << "Invalid Complains" << std::endl;
+        return ;
+    }
+    (harled.*fts[check])();
 }

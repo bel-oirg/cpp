@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/06 10:53:49 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/06 10:53:51 by bel-oirg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
-Zombie* Zombie::newZombie(std::string name)
+Zombie* newZombie(std::string name)
 {
     return (new Zombie(name));
 }
