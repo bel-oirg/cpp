@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 16:10:42 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/11 15:30:59 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main()
 {
-    ScavTrap a("buddha");
-    a.attack("HMIDA");
+    ScavTrap a("X");
+    a.attack("Y");
+    a.guardGate();
 }

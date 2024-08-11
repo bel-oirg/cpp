@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 09:30:04 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 11:52:42 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/11 15:24:34 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ class ClapTrap
     protected:
     std::string Name;
     unsigned int HitPoints;
-    unsigned int EnergytPoints;
+    unsigned int EnergyPoints;
     unsigned int AttackDamage;
 
     public:
     //ORTHX
+    ClapTrap();
     ClapTrap(std::string name);
     ClapTrap(const ClapTrap &cpy);
     ClapTrap &operator=(const ClapTrap &eq);

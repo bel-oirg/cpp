@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 10:57:30 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/11 15:19:34 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int main()
 {
     ClapTrap a("buddha");
-    a.attack("zaaam");
-    a.beRepaired(3);
+
+    a.beRepaired(4);
+    a.takeDamage(13);
+    a.attack("another one");
 }

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:49:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 12:11:28 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/11 15:45:35 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main()
 {
-    FragTrap a("buddha");
-    a.attack("HMIDA");
+    FragTrap a;
+    FragTrap b(a);
+    a.attack("BB");
     a.highFivesGuys();
 }
