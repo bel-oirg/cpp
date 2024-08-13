@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 14:22:36 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/13 19:38:37 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:27:04 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 DiamonTrap::DiamonTrap() : ClapTrap("Default_clap_name")
 {
     this->Name = "Default";
-    this->HitPoints = 100;
-    this->EnergyPoints = 50;
-    this->AttackDamage = 30;
+    this->HitPoints = FragTrap::HitPoints; //100
+    this->EnergyPoints = ScavTrap::EnergyPoints; //50
+    this->AttackDamage = FragTrap::AttackDamage; //30
     std::cout << "Default DiamonTrap constructor is called" << std::endl;
 }
 
 DiamonTrap::DiamonTrap(std::string Name) : ClapTrap(Name + "_clap_name"),  FragTrap(Name), ScavTrap(Name)
 {
     this->Name = Name;
-    this->HitPoints = 100;
-    this->EnergyPoints = 50;
-    this->AttackDamage = 30;
+    this->HitPoints = FragTrap::HitPoints;
+    this->EnergyPoints = ScavTrap::EnergyPoints;
+    this->AttackDamage = FragTrap::AttackDamage;
     std::cout << "DiamonTrap " << Name << " is initiated" << std::endl;
 }
 

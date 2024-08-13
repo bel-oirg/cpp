@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:58:59 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/13 18:56:28 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:03:09 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ FragTrap::FragTrap() : ClapTrap()
 {
     this->HitPoints = 100;
     this->AttackDamage = 30;
-    this->EnergyPoints = 100;
     std::cout << "The default constructor of FragTrap is called" << std::endl;
 }
 
@@ -24,7 +23,6 @@ FragTrap::FragTrap(std::string Name) : ClapTrap(Name)
 {
     this->HitPoints = 100;
     this->AttackDamage = 30;
-    this->EnergyPoints = 100;
     std::cout << "FragTrap " << Name << " is initalized" << std::endl;
 }
 
@@ -33,7 +31,6 @@ FragTrap::FragTrap(const FragTrap& cpy) : ClapTrap(cpy.Name)
     std::cout << "Copy constructor of FragTrap is called" << std::endl;
     this->HitPoints = cpy.HitPoints;
     this->AttackDamage = cpy.AttackDamage;
-    this->EnergyPoints = cpy.EnergyPoints;
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &eq)

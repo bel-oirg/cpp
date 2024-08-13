@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:59:45 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/13 23:42:15 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:21:49 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ class DiamonTrap : public FragTrap, public ScavTrap
     ~DiamonTrap();
 
     void whoAmI();
-    // using ScavTrap::attack;
 };
 
 #endif
