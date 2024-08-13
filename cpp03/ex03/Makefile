@@ -1,6 +1,6 @@
 NAME = DiamonTrap
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98# -Wshadow
 SRCS = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp DiamonTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamonTrap.hpp

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:59:31 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/11 17:49:01 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/13 05:34:21 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void ScavTrap::guardGate()
 void ScavTrap::attack(const std::string& target)
 {
     if (HitPoints && EnergyPoints)
+    {
+        EnergyPoints--;
         std::cout << "ScavTrap " << Name << " attacks " << target << ", causing " << AttackDamage << "pts of damage!" << std::endl;
+    }
     else
         std::cout << "Failed to attack" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:59:33 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/11 18:03:06 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:37:24 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class ScavTrap : public ClapTrap
 
     void guardGate();
     void attack(const std::string& target);
+    //method overriding
 };
 
 #endif
