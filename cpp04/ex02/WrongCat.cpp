@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 06:47:25 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/16 06:42:09 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/15 06:33:11 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/15 06:42:12 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#include "WrongCat.hpp"
 
-Brain::Brain()
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
-    std::cout << "The Brain is constructed" << std::endl;
+    std::cout << "The WrongCat woke up :)" << std::endl;
 }
 
-Brain::Brain(const Brain &cpy)
+WrongCat::WrongCat(const WrongCat &cpy)
 {
-    int i = -1;
-
-    while (++i < MAX_IDEAS)
-        this->ideas[i] = cpy.ideas[i];
+    *this = cpy;
 }
 
-Brain &Brain::operator=(const Brain &cpy)
-{    
+WrongCat &WrongCat::operator=(const WrongCat &cpy)
+{
     if (this != &cpy)
-    {
-        int i = -1;
-
-        while (++i < MAX_IDEAS)
-            this->ideas[i] = cpy.ideas[i];
-    }
+        this->type = cpy.type;
     return (*this);
 }
 
-Brain::~Brain()
+WrongCat::~WrongCat()
 {
-    std::cout << "The Brain is destructed" << std::endl;
+    std::cout << "An Animal is dead" << std::endl;
+}
+
+void WrongCat::makeSound(void) const
+{
+    std::cout << "The Cat is Meowing" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 09:57:05 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 11:33:11 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/18 10:10:09 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 Character::Character()
 {
+    head = new t_lnk_char;
+    head->next = NULL;
+    tmp = head;
+
     int index = -1;
     while (++index < 4)
-        this->slots[index] = nullptr;
-    cout << "Character's constructor is called" << endl;
+        this->slots[index] = NULL;
+    // cout << "Character's constructor is called" << endl;
 }
 
 Character::Character(std::string Name) : Name(Name)
 {
     int index = -1;
     while (++index < 4)
-        this->slots[index] = nullptr;
-    cout << "Character's " << Name << " constructor is called" << endl;
-}
-
-
-Character::~Character()
-{
-    cout << "Character's is destroyed" << endl;
+        this->slots[index] = NULL;
+    // cout << "Character's " << Name << " constructor is called" << endl;
 }
 
 Character &Character::operator=(const Character &cpy)
 {
     int index = -1;
-
+    cout << "copy assignment " << endl;
     if (this != &cpy)
     {
         this->Name = cpy.Name;
@@ -50,6 +48,17 @@ Character &Character::operator=(const Character &cpy)
 Character::Character(const Character &cpy)
 {
     *this = cpy;
+}
+
+Character::~Character()
+{
+    int index = 0;
+    while(index < 4 && slots[index])
+    {
+        delete slots[index];
+        slots[index++] = NULL;
+    }
+    // cout << "Character's is destroyed" << endl;
 }
 
 const std::string &Character::getName() const
@@ -67,24 +76,28 @@ void    Character::equip(AMateria *m)
     {
         if (!this->slots[index])
         {
+            tmp->ptr = m;
+            tmp = tmp->next;
+
             this->slots[index] = m;
             cout << this->getName() << " Equipped " << m->getType() << endl;
             return ;
         }
     }
+    delete m;
 }
 
 void Character::unequip(int idx)
 {
-    if (this->slots[idx])
+    if (idx >= 0 && idx < 4 && this->slots[idx])
     {
-        delete this->slots[idx];
-        this->slots[idx] = nullptr; //TODO remember the ptr
+        // delete this->slots[idx];
+        this->slots[idx] = NULL; //TODO remember the ptr
     }
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-    if (this->slots[idx])
+    if (idx >= 0 && idx < 4 && this->slots[idx])
         this->slots[idx]->use(target);
 }

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/13 10:12:08 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:24:47 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/15 03:40:48 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/16 00:23:24 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class MateriaSource : public IMateriaSource
+class Dog : public Animal
 {
     private:
-    AMateria *slots_bk[4];
+    Brain *brain;
 
     public:
-    //ORTHDX
-    MateriaSource();
-    MateriaSource(const MateriaSource &cpy);
-    MateriaSource &operator=(const MateriaSource &cpy);
-    ~MateriaSource();
-
-    void learnMateria(AMateria*);
-    AMateria* createMateria(std::string const & type);
+    Dog();
+    Dog(const Dog& cpy);
+    Dog &operator=(const Dog& cpy);
+    ~Dog();
+    virtual void makeSound(void) const;
 };

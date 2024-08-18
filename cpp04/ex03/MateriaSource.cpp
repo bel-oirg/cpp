@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:12:35 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 12:13:41 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/18 07:07:26 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,20 @@ MateriaSource::MateriaSource()
     int index = -1;
     
     while (++index < 4)
-        this->slots_bk[index] = nullptr;
-    cout << "MateriaSource constructor is called" << endl;
+        this->slots_bk[index] = NULL;
+    // cout << "MateriaSource constructor is called" << endl;
 }
 
 MateriaSource::~MateriaSource()
 {
-    // int index = -1;
-    // while(slots_bk[++index]) //TODO WHY I CANT
-    //     delete slots_bk[index];
-    cout << "MateriaSource is destructed" << endl;
+    int index = 0;
+
+    while (index < 4 && slots_bk[index])
+    {
+        delete slots_bk[index];
+        slots_bk[index++] = NULL;
+    }
+    // cout << "MateriaSource is destructed" << endl;
 }
 
 void MateriaSource::learnMateria(AMateria* new_m)
@@ -68,6 +72,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &cpy)
 {
     int index = -1;
 
+    //TODO THAT IS NOT DEEP CPY
     while(cpy.slots_bk[++index])
         this->slots_bk[index] = cpy.slots_bk[index];
     return (*this);

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 06:11:58 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:31:27 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/15 06:34:29 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ class WrongAnimal
     WrongAnimal(std::string name);
     void makeSound(void) const;
     std::string getType(void) const;
-};
-
-class WrongCat:public WrongAnimal
-{
-    public:
-    WrongCat();
-    void makeSound(void) const;
 };
 
 #endif

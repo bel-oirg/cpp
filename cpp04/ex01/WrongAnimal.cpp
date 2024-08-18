@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 06:13:08 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/12 06:35:42 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/15 06:44:50 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,10 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &cpy)
 
 void WrongAnimal::makeSound(void) const
 {
-    std::cout << "ROAROAR!" << std::endl;
+    std::cout << "WrongAnimal: ROARROAR!" << std::endl;
 }
-
-/*WRONG ANIMAL*/
 
 std::string WrongAnimal::getType(void) const
 {
     return (this->type);
-}
-
-WrongCat::WrongCat() : WrongAnimal("WrongCat")
-{
-    std::cout << "The WrongCat woke up :)" << std::endl;
-}
-
-void WrongCat::makeSound(void) const
-{
-    std::cout << "The Cat is Meowing" << std::endl;
 }

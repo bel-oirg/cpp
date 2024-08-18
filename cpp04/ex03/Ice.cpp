@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:52:46 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/13 12:50:20 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/18 05:51:48 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void Ice::use(ICharacter& target)
 
 Ice::Ice() : AMateria("ice")
 {
-    cout << "Ice Constructor is called" << endl;
+    // cout << "Ice Constructor is called" << endl;
 }
 
 Ice::~Ice()
 {
-    cout << "Ice Destructor is called" << endl;
+    // cout << "Ice Destructor is called" << endl;
 }
 
 Ice* Ice::clone() const

@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/13 10:12:08 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:24:47 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/15 03:39:18 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/15 06:53:03 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Cat.hpp"
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
-
-class MateriaSource : public IMateriaSource
+Cat::Cat() : Animal("Cat")
 {
-    private:
-    AMateria *slots_bk[4];
+    std::cout << "The Cat woke up :)" << std::endl;
+}
 
-    public:
-    //ORTHDX
-    MateriaSource();
-    MateriaSource(const MateriaSource &cpy);
-    MateriaSource &operator=(const MateriaSource &cpy);
-    ~MateriaSource();
+Cat &Cat::operator=(const Cat &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this);
+}
 
-    void learnMateria(AMateria*);
-    AMateria* createMateria(std::string const & type);
-};
+Cat::Cat(const Cat &cpy)
+{
+    *this = cpy;
+}
+
+Cat::~Cat()
+{
+    std::cout << "The Cat is dead :)" << std::endl;
+}
+
+void    Cat::makeSound() const
+{
+    std::cout << "Cat: Meow!" << std::endl;
+}

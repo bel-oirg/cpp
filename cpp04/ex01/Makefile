@@ -1,9 +1,9 @@
 NAME = Brain
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Animal.cpp WrongAnimal.cpp Brain.cpp main.cpp
+CFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+SRCS = Animal.cpp WrongAnimal.cpp WrongCat.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Animal.hpp WrongAnimal.hpp Brain.hpp
+HEADER = Animal.hpp WrongAnimal.hpp WrongCat.hpp Cat.hpp Dog.hpp Brain.hpp
 
 all : $(NAME)
 

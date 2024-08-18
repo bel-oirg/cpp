@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/13 10:12:08 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:24:47 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/15 03:40:42 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/16 00:23:51 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class MateriaSource : public IMateriaSource
+class Cat : public Animal
 {
     private:
-    AMateria *slots_bk[4];
+    Brain *brain;
 
     public:
-    //ORTHDX
-    MateriaSource();
-    MateriaSource(const MateriaSource &cpy);
-    MateriaSource &operator=(const MateriaSource &cpy);
-    ~MateriaSource();
-
-    void learnMateria(AMateria*);
-    AMateria* createMateria(std::string const & type);
+    Cat();
+    Cat(const Cat& cpy);
+    Cat &operator=(const Cat& cpy);
+    ~Cat();
+    virtual void makeSound(void) const;
 };

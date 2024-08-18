@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/13 10:12:08 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:24:47 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/15 03:40:45 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/15 06:52:54 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Dog.hpp"
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
-
-class MateriaSource : public IMateriaSource
+Dog::Dog() : Animal("Dog")
 {
-    private:
-    AMateria *slots_bk[4];
+    std::cout << "A Dog is coming" << std::endl;
+}
 
-    public:
-    //ORTHDX
-    MateriaSource();
-    MateriaSource(const MateriaSource &cpy);
-    MateriaSource &operator=(const MateriaSource &cpy);
-    ~MateriaSource();
+Dog &Dog::operator=(const Dog &cpy)
+{
+    if (this != &cpy)
+        this->type = cpy.type;
+    return (*this);
+}
 
-    void learnMateria(AMateria*);
-    AMateria* createMateria(std::string const & type);
-};
+Dog::Dog(const Dog &cpy)
+{
+    *this = cpy;
+}
+
+Dog::~Dog()
+{
+    std::cout << "A Dog is dead" << std::endl;
+}
+
+void    Dog::makeSound() const
+{
+    std::cout << "Dog: HawHaw!" << std::endl;
+}
