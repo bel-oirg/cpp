@@ -6,15 +6,16 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 03:39:18 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/15 06:53:03 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:47:42 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : Animal("Cat")
+Cat::Cat()
 {
-    std::cout << "The Cat woke up :)" << std::endl;
+    this->type = "Cat";
+    std::cout << "The Cat is constructed" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &cpy)

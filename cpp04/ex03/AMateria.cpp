@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:19:31 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:52:07 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 05:34:13 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ AMateria::AMateria(std::string const & type) : type(type)
 
 AMateria::AMateria(const AMateria &cpy)
 {
-    this->type = cpy.type;
+    (void)cpy;
 }
 
-// AMateria &AMateria::operator=(const AMateria &eq)
-// {
-//     if (this != &eq)
-//         this->type = eq.type;
-//     return (*this);
-// }
+AMateria &AMateria::operator=(const AMateria &eq)
+{
+    (void)eq;
+    return (*this);
+}
 
 AMateria::~AMateria()
 {

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 06:23:15 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/03 10:00:40 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/04 08:58:47 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #define MAX_LEN     9
 
 #include <iostream>
+#include <iomanip>
 
 class Contact
 {

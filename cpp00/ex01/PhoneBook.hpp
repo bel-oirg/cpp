@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 11:53:46 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/03 09:19:35 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/04 13:37:35 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ class PhoneBook
 	which holds its own data members and member functions,
 	which can be accessed and used by creating an instance of that class.
 	A C++ class is like a blueprint for an object.
-*/
 
-/*
 	An object in C++ is an instance of a class that contains data
 	and functions defined by the class.
 */

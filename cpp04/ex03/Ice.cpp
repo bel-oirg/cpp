@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:52:46 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:51:48 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 10:01:29 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ Ice::~Ice()
 
 Ice* Ice::clone() const
 {
-    return (new Ice(*this)); //TODO leaks ????/???>
+    return (new Ice(*this));
 }
 
-Ice::Ice(const Ice &cpy) : AMateria(cpy.type)
+Ice::Ice(const Ice &cpy) : AMateria("ice")
 {
     *this = cpy;
 }
@@ -41,5 +41,5 @@ Ice &Ice::operator=(const Ice &cpy)
 {
     if (this != &cpy)
         this->type = cpy.type;
-    return (*this); //TODO No need to copy type since it is intrinsic
+    return (*this);
 }

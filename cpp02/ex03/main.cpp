@@ -5,21 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/07 09:48:04 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 09:22:02 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/06 16:02:17 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/06 16:31:14 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
-#include <iostream>
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-int main( void )
+int main()
 {
-    Point a(0.0f, 0.0f);
-    Point b(10.0f, 30.0f);
-    Point c(20.0f, 0.0f);
-    Point f(10.f, 15.3f);
-
-    std::cout << bsp(a, b, c, f);
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanA bob("Bob", club);
+        bob.attack();
+        club.setType("some other type of club");
+        bob.attack();
+    }
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanB jim("someone");
+        jim.setWeapon(club);
+        jim.attack();
+        club.setType("some other type of club");
+        jim.attack();
+    }
     return 0;
 }

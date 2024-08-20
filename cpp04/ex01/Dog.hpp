@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 03:40:48 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/16 00:23:24 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:55:17 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ class Dog : public Animal
     Dog(const Dog& cpy);
     Dog &operator=(const Dog& cpy);
     ~Dog();
-    virtual void makeSound(void) const;
+    void makeSound(void) const;
 };

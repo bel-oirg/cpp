@@ -103,7 +103,6 @@ bool    Account::makeWithdrawal(int withd)
     _displayTimestamp();
     if (_amount < withd)
     {
-
         std::cout << " index:" << _accountIndex
                   << ";p_amount:"<< _amount
                   << ";withdrawal:refused"
@@ -122,7 +121,12 @@ bool    Account::makeWithdrawal(int withd)
     return (true);
 }
 
-int Account::checkAmount(void) const //this const means it cannot change the value of any attribute
+/*
+    the const method means that the function does not modify
+    any member variables of the class
+*/
+
+int Account::checkAmount(void) const 
 {
     return (_totalAmount);
 }
@@ -146,3 +150,23 @@ Account::~Account(void)
               << ";amount:"<< _amount
               << ";closed" << std::endl;
 }
+/*
+    -> std::vector is a sequence container
+    that encapsulates dynamic size arrays.
+*/
+
+/*
+    the desctuctor is called in the reverse order 
+    this is because C++ uses a stack for managing object lifetimes.
+    to ensure that if an object depends on another it will be destroyed
+    in the right order
+*/
+
+/*
+    foreach() is a standard algorithm in the C++ Standard Library
+    that applies a given function to each element
+    in a specified range.
+
+    std::mem_fun_ref is a function adapter that turns
+    a member function pointer into a function object.
+*/

@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 06:47:25 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/16 06:42:09 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:35:20 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ Brain::Brain(const Brain &cpy)
 
     while (++i < MAX_IDEAS)
         this->ideas[i] = cpy.ideas[i];
+    std::cout << "The Brain's cpy construstor is called" << std::endl;
 }
 
 Brain &Brain::operator=(const Brain &cpy)

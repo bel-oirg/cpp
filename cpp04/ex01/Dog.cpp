@@ -6,15 +6,16 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 03:40:45 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/17 01:59:43 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:46:06 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog() : Animal("Dog"), brain(new Brain())
+Dog::Dog() : brain(new Brain())
 {
-    std::cout << "A Dog is coming" << std::endl;
+    this->type = "Dog";
+    std::cout << "A Dog is constucted" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &cpy)

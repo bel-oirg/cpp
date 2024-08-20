@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 10:01:39 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 01:10:14 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:22:31 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,9 @@ class AMateria
     AMateria(std::string const & type);
     AMateria(const AMateria &cpy);
     AMateria &operator=(const AMateria &eq);
-    virtual ~AMateria(); //TODO MADE VIRTUAL
+    virtual ~AMateria();
     std::string const & getType() const; //Returns the materia type
     
     virtual AMateria* clone() const = 0;
     virtual void use(ICharacter& target);
 };
-
-/* TODO explain why
-    While assigning a Materia to another, copying the type doesn’t make
-    sense.
-*/
-

@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/07 09:49:50 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/08 03:47:32 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/06 16:02:34 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/06 16:21:22 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_H
-#define FIXED_H
+#pragma once
 
-#include <iostream>
+#include "Weapon.hpp"
 
-class Fixed
+class HumanB
 {
     private:
-    int fixed_point;
-    static const int frac_bits;
+    std::string name;
+    Weapon      *w;
 
     public:
-    Fixed(); //called when we initiat an instance
-    Fixed(const Fixed &other); //used to copy 
-    Fixed &operator=(const Fixed &src); //used to assign the objet to another
-    ~Fixed(); //a destractor called when the object is destroyed
-    int getRawBits(void) const;
-    void setRawBits(int const raw);
+    HumanB(std::string name);
+    ~HumanB();
+    void    setWeapon(Weapon &new_w);
+    void    attack(void);
 };
-
-#endif

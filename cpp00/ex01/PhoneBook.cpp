@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 11:53:43 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/03 12:00:44 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/04 12:58:21 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,47 @@ int PhoneBook::get_val(std::string s_num)
     int sign;
     int num;
     int i;
+    int is_d;
 
     sign = 1;
     num = 0;
+    is_d = 0;
     i = 0;
     while (s_num[i] == ' ' || s_num[i] == '\t')
         i++;
-    while (s_num[i] == '-' || s_num[i] == '+')
+    if (s_num[i] == '-' || s_num[i] == '+')
         if (s_num[i++] == '-')
-            sign *= -1;
+            sign = -1;
     while (s_num[i] >= '0' && s_num[i] <= '9')
     {
+        is_d = 1;
         num = num * 10 + (s_num[i] - '0');
         if (num >= MAX_CONTACT)
             return (-1);
         i++;
     }
-    if (i < (int)s_num.length() || sign * num < 0)
+    if (i < (int)s_num.length() || sign * num < 0 || !is_d)
         return (-1);
     return (num);
 }
 
 void    PhoneBook::search_user(int index)
 {
-    int counter;
-    int number;
+    int         counter;
+    int         number;
     std::string s_num;
 
+    std::cout   << "-------------------📞📞📞--------------------\n"
+                << "|" 
+                << std::setw(10) << "INDEX" 
+                << "|"
+                << std::setw(10) << "FIRST NAME" 
+                << "|"
+                << std::setw(10) << "LAST NAME" 
+                << "|" 
+                << std::setw(10) << "NICK NAME" 
+                << "|" 
+                << std::endl;
     counter = -1;
     while(++counter <= index)
         contacts[counter].get_data();

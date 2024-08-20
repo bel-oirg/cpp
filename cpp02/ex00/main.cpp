@@ -5,25 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/07 09:48:04 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/08 02:35:22 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/06 10:53:44 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/07 16:27:11 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#include "Zombie.hpp"
 
-int main( void )
+int main()
 {
-    Fixed a;
-    Fixed b( a );
-    Fixed c;
+    std::string s_name = "first one";
+    std::string h_name = "second";
 
-    c = b;
-    
-    std::cout << a.getRawBits() << std::endl;
-    std::cout << b.getRawBits() << std::endl;
-    std::cout << c.getRawBits() << std::endl;
-    
-    return (0);
+    Zombie stacked(s_name);
+    stacked.annouce();
+
+    Zombie *heaped = newZombie(h_name);
+    if (heaped == NULL)
+        return (-1);
+    heaped->annouce();
+    delete heaped;
 }
+
+/*
+    static method can be called without having an object
+*/

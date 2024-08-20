@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:48:57 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 05:51:52 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 10:01:50 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Cure::Cure() : AMateria("cure")
     // cout << "Cure Constructor is called" << endl;
 }
 
-Cure::Cure(const Cure &cpy) : AMateria(cpy.type)
+Cure::Cure(const Cure &cpy) : AMateria("Cure")
 {
     *this = cpy;
 }
@@ -41,5 +41,5 @@ void Cure::use(ICharacter& target)
 
 Cure* Cure::clone() const
 {
-    return (new Cure(*this)); //TODO leaks ????/???>
+    return (new Cure(*this));
 }

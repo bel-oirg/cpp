@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.hpp                                          :+:      :+:    :+:   */
+/*   Sed.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/11 02:35:59 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/11 08:18:06 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/07 11:54:03 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/07 14:30:23 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#pragma once
 
-#include "Fixed.hpp"
+#include <iostream>
+#include <fstream>
 
-class Point
+class Sed
 {
     private:
-    const Fixed x;
-    const Fixed y;
-    
+    std::ifstream   istream;
+    std::ofstream   ostream;
+    std::string     find;
+    std::string     replace;
+    int             err;
+
     public:
-    Point();
-    Point(const float x, const float y);
-    Point(const Point &copied);
-    Point &operator=(const Point &eq);
-    Fixed getx(void) const;
-    Fixed gety(void) const;
-    ~Point(void);
+    Sed(std::string infile,std::string find, std::string replace);
+    ~Sed();
 };
-
-bool bsp(Point a, Point b, Point c, Point point);
-float area(Point a, Point b, Point c);
-
-#endif

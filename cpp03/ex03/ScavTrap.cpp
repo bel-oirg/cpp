@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:59:31 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/14 00:04:03 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/13 05:34:21 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
+    this->HitPoints = 100;
+    this->AttackDamage = 20;
     this->EnergyPoints = 50;
     std::cout << "Default constructor of ScavTrap is called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name)
 {
+    this->HitPoints = 100;
+    this->AttackDamage = 20;
     this->EnergyPoints = 50;
     std::cout << "ScavTrap " << Name << " is initalized" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& cpy) : ClapTrap(cpy.Name)
 {
+    this->HitPoints = cpy.HitPoints;
+    this->AttackDamage = cpy.AttackDamage;
     this->EnergyPoints = cpy.EnergyPoints;
     std::cout << "Copy constructor of ScavTrap is called" << std::endl;
 }

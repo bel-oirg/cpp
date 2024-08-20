@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:12:35 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 07:07:26 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 05:48:29 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ MateriaSource::~MateriaSource()
         delete slots_bk[index];
         slots_bk[index++] = NULL;
     }
+
     // cout << "MateriaSource is destructed" << endl;
 }
 
@@ -42,10 +43,11 @@ void MateriaSource::learnMateria(AMateria* new_m)
         if (!this->slots_bk[index])
         {
             this->slots_bk[index] = new_m;
-            cout << "Materia Learned " << new_m->getType() << endl;
+            // cout << "Materia Learned " << new_m->getType() << endl;
             return ; 
         }
     }
+    delete new_m;
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type)
@@ -56,7 +58,7 @@ AMateria *MateriaSource::createMateria(const std::string &type)
     {
         if (this->slots_bk[index] && type == this->slots_bk[index]->getType())
         {
-            cout << "Materia " << type << " Created" << endl;
+            // cout << "Materia " << type << " Created" << endl;
             return (this->slots_bk[index]->clone());
         }
     }
@@ -65,6 +67,10 @@ AMateria *MateriaSource::createMateria(const std::string &type)
 
 MateriaSource::MateriaSource(const MateriaSource &cpy)
 {
+    int index = -1;
+    
+    while (++index < 4)
+        this->slots_bk[index] = NULL;
     *this = cpy;
 }
 
@@ -72,8 +78,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &cpy)
 {
     int index = -1;
 
-    //TODO THAT IS NOT DEEP CPY
     while(cpy.slots_bk[++index])
-        this->slots_bk[index] = cpy.slots_bk[index];
+    {
+        delete this->slots_bk[index];
+        this->slots_bk[index] = cpy.slots_bk[index]->clone();
+    }
     return (*this);
 }

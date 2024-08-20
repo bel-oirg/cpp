@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:59:45 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/14 00:21:49 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/14 04:53:52 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class DiamonTrap : public FragTrap, public ScavTrap
     DiamonTrap &operator=(const DiamonTrap &eq);
     ~DiamonTrap();
 
+    using ScavTrap::attack;
     void whoAmI();
 };
 
@@ -46,8 +47,9 @@ class DiamonTrap : public FragTrap, public ScavTrap
 */
 
 /*
-    We make the classes FragTrap and ScavTrap as virtual base
-    classes to avoid two copies of ClapTrap in DiamonTrap class.
+    We inherited the claptrap as virtual class in
+    the classes FragTrap and ScavTrap
+    avoid two copies of ClapTrap in DiamonTrap class.
 
     It's the responsibility of the most derived class (DiamonTrap) 
     to initialize the virtual base class (ClapTrap)

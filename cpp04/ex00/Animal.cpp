@@ -6,19 +6,11 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:19:26 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/17 00:58:24 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:54 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
-
-/*
-    virtual ft inside a class is used to execute the ft of the most derived class
-
-    virtual void MakeSound() = 0  //that is a pure virtual ft
-    abstract class is class that has at least one pure virtual ft
-    every class that inherit from our class, will have to provide its own implementation for that ft
-*/
 
 Animal::Animal() : type("")
 {
@@ -32,6 +24,7 @@ Animal::Animal(std::string name) : type(name)
 
 Animal::Animal(const Animal &cpy)
 {
+    std::cout << "An Animal cpy constructor is initiated" << std::endl;
     *this = cpy;
 }
 

@@ -5,31 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/07 09:48:04 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/07/08 10:13:27 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/08/06 11:22:28 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/07 14:51:31 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#include "Zombie.hpp"
 
-int main( void )
+#define N 8
+
+int main()
 {
-    Fixed a;
-    Fixed const b( 10 );
-    Fixed const c( 42.42f );
-    Fixed const d( b );
-
-    a = Fixed( 1234.4321f );
-    
-    std::cout << "a is " << a << std::endl;
-    std::cout << "b is " << b << std::endl;
-    std::cout << "c is " << c << std::endl;
-    std::cout << "d is " << d << std::endl;
-    
-    std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-    std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-    std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-    std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-    return 0;
+    /*
+        if you pass NULL to the name of the zombie, it will seg
+        because the ft is waiting a class not a ptr
+        the seg happens inside the class
+    */
+    Zombie* inst = zombieHorde(N, "A_name");
+    if (inst != NULL)
+    {
+        for (int index = 0 ; index < N ; index++)
+            inst[index].announce();
+        delete[] inst;
+    }
 }

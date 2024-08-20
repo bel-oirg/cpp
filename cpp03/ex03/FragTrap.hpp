@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 12:01:48 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/13 04:22:02 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/14 05:01:33 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class FragTrap : virtual public ClapTrap
     FragTrap &operator=(const FragTrap &eq);
     ~FragTrap();
 
-    void highFivesGuys();
+    void highFivesGuys(void);
 };
 
 #endif

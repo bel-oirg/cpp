@@ -1,9 +1,9 @@
-NAME = Fixed
+NAME = violence
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp Point.cpp bsp.cpp
+SRCS = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp Point.hpp
+HEADER = HumanA.hpp HumanB.hpp Weapon.hpp
 
 all : $(NAME)
 

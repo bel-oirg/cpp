@@ -6,7 +6,7 @@
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 10:53:30 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/18 00:31:30 by bel-oirg         ###   ########.fr       */
+/*   Updated: 2024/08/20 05:18:40 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ class Ice : public AMateria
 {
     public:
     Ice();
-    ~Ice();  //TODO
+    ~Ice();
     
     Ice(const Ice &cpy);
     Ice &operator=(const Ice &cpy);
     
-    virtual void use(ICharacter& target);
-    virtual Ice* clone() const;
+    void use(ICharacter& target);
+    Ice* clone() const;
 };

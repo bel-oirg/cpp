@@ -1,16 +1,13 @@
-NAME = Fixed
+NAME = reference
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Fixed.cpp main.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Fixed.hpp
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(HEADER)
+$(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-$(OBJS) : $(HEADER)
 
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
