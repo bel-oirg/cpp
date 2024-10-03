@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 
 class Bureaucrat
 {
@@ -9,36 +10,26 @@ class Bureaucrat
 	const std::string	name;
 	int					grade;
 
-	Bureaucrat();
-	
-	~Bureaucrat();
-
 	public:
-	const std::string getName();
+	Bureaucrat(const std::string name, int grade);
+	Bureaucrat(const Bureaucrat& copy);
+	Bureaucrat &operator=(const Bureaucrat &eq);
+	Bureaucrat();
+	~Bureaucrat();
+	const std::string getName() const;
+	int			getGrade() const;
 	void		inc_grade();
 	void		dec_grade();
-	int			getGrade();
-	class		GradeTooHighException;
-	class		GradeTooLowException;
+
+	class	GradeTooHighException : public std::exception
+	{
+		public:
+		const char* what() const throw();
+	};
+	
+	class	GradeTooLowException : public std::exception
+	{
+		public:
+		const char* what() const throw();
+	};
 };
-
-/*
-	try
-	{
-	
-	}
-	catch (int param)
-	{
-		std::cout << |shit << std::endl;
-	}
-	catch (...) //default exception
-	{
-	
-	}
-
-	exception is a base class
-	of many exception class
-	(bad_alloc, logic err,  out_of_range ..)
-	exception has a method called what
-	e.what();
-*/

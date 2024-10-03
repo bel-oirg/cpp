@@ -1,13 +1,16 @@
-NAME = reference
+NAME = Bureaucrat
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp
+SRCS = main.cpp Bureaucrat.cpp
 OBJS = $(SRCS:.cpp=.o)
+HEADER = Bureaucrat.hpp
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJS) : $(HEADER)
 
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@

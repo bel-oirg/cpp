@@ -5,47 +5,61 @@ Bureaucrat::Bureaucrat() : name("default"), grade(10)
     std::cout << "The defaut constuctor is called" << std::endl;
 }
 
-Bureaucrat::~Bureaucrat()
+Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name), grade(grade)
 {
-       std::cout << "The defaut destructor is called" << std::endl;
+    if (grade > 150)
+        throw GradeTooLowException();
+    else if (grade < 0)
+        throw GradeTooHighException();
 }
 
-int Bureaucrat::getGrade()
+Bureaucrat::~Bureaucrat()
+{
+   std::cout << "The defaut destructor is called" << std::endl;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+{
+    std::cout << "Copy constructor is called" << std::endl;
+    this->grade = copy.grade;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &eq)
+{
+    this->grade = eq.grade;
+    return (*this);
+}
+
+int Bureaucrat::getGrade() const
 {
     return (grade);
 }
 
-const std::string Bureaucrat::getName()
+const std::string Bureaucrat::getName() const
 {
     return (name);
 }
 
-void    Bureaucrat::inc_grade()
-{
-    if (grade >= 150)
-        throw GradeTooHighException();
-    grade++;
-}
-
-void    Bureaucrat::dec_grade()
+void Bureaucrat::inc_grade()
 {
     if (grade <= 1)
-        throw GradeTooLowException();
+        throw GradeTooHighException();
     grade--;
 }
 
-class Bureaucrat::GradeTooHighException : public std::exception
+void Bureaucrat::dec_grade()
 {
-    const char *what() const noexcept override
-    {
-        return "Grade Too High";
-    }
-};
+    if (grade >= 150)
+        throw GradeTooLowException();
+    grade++;
+}
 
-class Bureaucrat::GradeTooLowException : public std::exception
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    const char *what() const noexcept override
-    {
-        return "Grade Too Low";
-    }
-};
+    return "Grade Too High";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "Grade Too Low";
+}
