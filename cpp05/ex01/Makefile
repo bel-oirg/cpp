@@ -1,9 +1,9 @@
-NAME = harlFilter
+NAME = Bureaucrat
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Harl.cpp main.cpp
+SRCS = main.cpp Bureaucrat.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Harl.hpp
+HEADER = Bureaucrat.hpp
 
 all : $(NAME)
 

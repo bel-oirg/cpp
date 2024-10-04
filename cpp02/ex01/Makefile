@@ -1,9 +1,9 @@
-NAME = horde
+NAME = Fixed
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = Zombie.cpp zombieHorde.cpp main.cpp
+SRCS = Fixed.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Zombie.hpp
+HEADER = Fixed.hpp
 
 all : $(NAME)
 

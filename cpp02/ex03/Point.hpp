@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bel-oirg <bel-oirg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 16:31:41 by bel-oirg          #+#    #+#             */
-/*   Updated: 2024/08/07 14:25:51 by bel-oirg         ###   ########.fr       */
+/*   Created: 2024/07/11 02:35:59 by bel-oirg          #+#    #+#             */
+/*   Updated: 2024/08/09 23:16:08 by bel-oirg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Sed.hpp"
+#ifndef POINT_H
+#define POINT_H
 
-int main(int argc, char *argv[])
+#include "Fixed.hpp"
+
+class Point
 {
-    if (argc != 4)
-    {
-        std::cout << "Invalid number of args" << std::endl;
-        return 1;
-    }
+    private:
+    const Fixed x;
+    const Fixed y;
+    
+    public:
+    Point();
+    Point(const float x, const float y);
+    Point(const Point &copied);
+    Point &operator=(const Point &eq);
+    Fixed getx(void) const;
+    Fixed gety(void) const;
+    ~Point(void);
+};
 
-    Sed repl(argv[1], argv[2], argv[3]);
-}
+bool bsp(Point a, Point b, Point c, Point point);
+
+#endif
