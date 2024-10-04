@@ -1,10 +1,11 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
     try
     {
-        Bureaucrat a("a name", 2147483649);
+        Form a("a name", 12, 12);
         std::cout << a << std::endl;
     }
     catch (std::exception &e)

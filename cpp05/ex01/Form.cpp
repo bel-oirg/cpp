@@ -1,5 +1,37 @@
 #include "Form.hpp"
 
+Form::Form() : name("default"), grade_sign(150), grade_exec(150), is_signed(false)
+{
+    std::cout << "The defaut constuctor is called" << std::endl;
+}
+
+Form::Form(const std::string name, int grade_sign, int grade_exec) : name(name), grade_sign(grade_sign)
+{
+    if (grade_sign > 150 || grade_exec > 150)
+        throw GradeTooLowException();
+    else if (grade_sign < 0 || grade_exec < 0)
+        throw GradeTooHighException();
+}
+
+Form::~Form()
+{
+   std::cout << "The default destructor is called" << std::endl;
+}
+
+Form::Form(const Form &copy): name("default"), grade_sign(150), grade_exec(150)
+{
+    std::cout << "Copy constructor is called" << std::endl;
+    this->is_signed = copy.is_signed;
+}
+
+Form &Form::operator=(const Form &eq)
+{
+    this->is_signed = eq.is_signed;
+    return (*this);
+}
+
+
+
 std::ostream	&operator<<(std::ostream &o, Form const &f)
 {
 	o << "the form name is " << f.getName()
