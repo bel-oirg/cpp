@@ -7,7 +7,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 	private:
 	const std::string   name;
@@ -16,12 +16,12 @@ class Form
 	const int           grade_exec;
 
 	public:
-	Form(const std::string name, int grade_sign, int grade_exec);
+	AForm(const std::string name, int grade_sign, int grade_exec);
 	//ORTHDX
-	Form();
-	~Form();
-	Form(const Form &cpy);
-	Form &operator=(const Form &eq);
+	AForm();
+	virtual ~AForm(); // for a proper cleanup of the derived class
+	AForm(const AForm &cpy);
+	AForm &operator=(const AForm &eq);
 
 	//GETTERS
 	std::string	getName() const;
@@ -43,6 +43,7 @@ class Form
 		public:
 		virtual const char* what() const throw();
 	};
+	virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
-std::ostream &operator<<(std::ostream &o, Form const &f);
+std::ostream &operator<<(std::ostream &o, AForm const &f);

@@ -1,11 +1,11 @@
 #include "Form.hpp"
 
-Form::Form() : name("default"), grade_sign(150), grade_exec(150), is_signed(false)
+Form::Form() : name("default"), is_signed(false), grade_sign(150), grade_exec(150)
 {
-    std::cout << "The defaut constuctor is called" << std::endl;
+    // std::cout << "The defaut constuctor is called" << std::endl;
 }
 
-Form::Form(const std::string name, int grade_sign, int grade_exec) : name(name), grade_sign(grade_sign)
+Form::Form(const std::string name, int grade_sign, int grade_exec) : name(name), grade_sign(grade_sign), grade_exec(grade_exec)
 {
     if (grade_sign > 150 || grade_exec > 150)
         throw GradeTooLowException();
@@ -15,12 +15,12 @@ Form::Form(const std::string name, int grade_sign, int grade_exec) : name(name),
 
 Form::~Form()
 {
-   std::cout << "The default destructor is called" << std::endl;
+//    std::cout << "The default destructor is called" << std::endl;
 }
 
 Form::Form(const Form &copy): name("default"), grade_sign(150), grade_exec(150)
 {
-    std::cout << "Copy constructor is called" << std::endl;
+    // std::cout << "Copy constructor is called" << std::endl;
     this->is_signed = copy.is_signed;
 }
 
@@ -29,8 +29,6 @@ Form &Form::operator=(const Form &eq)
     this->is_signed = eq.is_signed;
     return (*this);
 }
-
-
 
 std::ostream	&operator<<(std::ostream &o, Form const &f)
 {
@@ -54,6 +52,11 @@ const char* Form::GradeTooLowException::what() const throw()
 	return "Grade Too Low";
 }
 
+std::string Form::getName() const
+{
+	return (name);
+}
+
 int Form::getGrade_sign() const
 {
 	return (grade_sign);
@@ -69,12 +72,7 @@ bool Form::getIs_signed() const
 	return (is_signed);
 }
 
-const std::string Bureaucrat::getName() const
-{
-	return (name);
-}
-
-void Form::beSigned(Bureaucrat bur)
+void Form::beSigned(Bureaucrat &bur)
 {
 	if (bur.getGrade() <= this->grade_sign)
 	{

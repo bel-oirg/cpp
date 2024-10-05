@@ -30,13 +30,13 @@ class Bureaucrat
 	{
 		//we used throw to overide & do not throw an expection
 		public:
-		const char* what() const throw();
+		virtual const char* what() const throw();
 	};
 	
 	class	GradeTooLowException : public std::exception
 	{
 		public:
-		const char* what() const throw();
+		virtual const char* what() const throw(); //TODO add virtual?
 	};
 };
 
