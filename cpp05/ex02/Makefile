@@ -1,9 +1,9 @@
-NAME = Form
+NAME = Form_28B
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp Form.cpp Bureaucrat.cpp 
+SRCS = main.cpp RobotomyRequestForm.cpp Bureaucrat.cpp AForm.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADER = Bureaucrat.hpp Form.hpp
+HEADER = Bureaucrat.hpp AForm.hpp RobotomyRequestForm.hpp
 
 all : $(NAME)
 

@@ -24,7 +24,7 @@ class AForm
 	AForm &operator=(const AForm &eq);
 
 	//GETTERS
-	std::string	getName() const;
+	std::string			getName() const;
 	int					getGrade_sign() const;
 	int					getGrade_exec() const;
 	bool				getIs_signed() const;

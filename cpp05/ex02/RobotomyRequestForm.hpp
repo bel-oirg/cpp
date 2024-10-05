@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AForm.hpp"
+#include <time.h>
 
 class RobotomyRequestForm : public AForm
 {
@@ -16,5 +17,10 @@ class RobotomyRequestForm : public AForm
 	RobotomyRequestForm(const RobotomyRequestForm &cpy);
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &eq);
 
+	class	FormNotSigned : public std::exception
+	{
+		public:
+		virtual const char* what() const throw();
+	};
     void execute(Bureaucrat const &executor) const;
 };
