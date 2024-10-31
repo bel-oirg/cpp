@@ -1,12 +1,12 @@
-NAME = real_type
+NAME = conv
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Base.cpp real_type.cpp main.cpp
+SRCS = ScalarConverter.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADER = A.hpp B.hpp C.hpp Base.hpp real_type.hpp
+HEADER = ScalarConverter.hpp
 
 all : $(NAME)
 

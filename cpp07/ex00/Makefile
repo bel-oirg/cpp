@@ -1,12 +1,12 @@
-NAME = real_type
+NAME = few
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Base.cpp real_type.cpp main.cpp
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADER = A.hpp B.hpp C.hpp Base.hpp real_type.hpp
+HEADER = whatever.hpp
 
 all : $(NAME)
 
