@@ -18,11 +18,16 @@ Array<T>::Array(unsigned int n) : _size(n)
     arr = new T[n];
 }
 
-
 template<typename T>
 unsigned int Array<T>::size() const
 {
     return (_size);
+}
+
+template<typename T>
+const char* Array<T>::out_of_range::what() const throw()
+{
+    return "[-] Out of range";
 }
 
 template<typename T>

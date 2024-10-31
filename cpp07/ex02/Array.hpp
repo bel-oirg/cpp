@@ -16,6 +16,11 @@ class Array
     Array(const Array &cpy);
     ~Array();
     T &operator[](unsigned int size);
+    class out_of_range : public std::exception
+    {
+        public:
+            virtual const char* what() const throw();
+    }
     // T& operator[](int size) const;
 
     unsigned int size() const;
