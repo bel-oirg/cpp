@@ -1,215 +1,190 @@
 #include "ScalarConverter.hpp"
 
-int check_char(std::string format)
+void imp()
 {
-	return (format.size() == 1 && !isdigit(format[0]));
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
 }
 
-long    get_int(std::string s_num)
+int check_type(std::string format)
 {
-	int sign;
-	long num;
-	int i;
-
-	sign = 1;
-	num = 0;
-	i = 0;
-	if (s_num[i] == '-' || s_num[i] == '+')
-		if (s_num[i++] == '-')
-			sign = -1;
-	while (s_num[i] >= '0' && s_num[i] <= '9')
-	{
-		num = num * 10 + (s_num[i] - '0');
-		if (num *sign >= INT_MAX || num * sign < INT_MIN)
-			return (NAN);
-		i++;
-	}
-	if (i < (int)s_num.length())
-		return (NAN);
-	return (num);
-}
-
-int   get_double(std::string s_num, long double *num)
-{
-	double  fraction;
-	int     sign;
-	int     i;
-	int     is_dot;
-
-	i = 0;
-	fraction = 1.0;
-	sign = 1;
-	is_dot = 0;
-	*num = 0.0;
-	if (s_num[i] == '-' || s_num[i] == '+')
-		if (s_num[i++] == '-')
-			sign = -1;
-	while(s_num[i])
-	{
-		if (s_num[i] == '.')
-			is_dot = 1;
-		else if (isdigit(s_num[i]))
-		{
-			if (is_dot)
-			{
-				fraction *= 0.1;
-				*num += fraction * (s_num[i] - '0');
-			}
-			else
-				*num = *num * 10 + (s_num[i] - '0');
-			if ((sign > 1 && *num > DBL_MAX) || (sign < 0 && sign * *num < DBL_MIN))
-				return (-1);
-		}
-		else
-			return (-1);
-		i++;
-	}
-	*num *= sign;
-	return (0);
-}
-
-int   get_float(std::string s_num, double *num)
-{
-	float   fraction;
-	int     sign;
-	int     i;
-	int     is_dot;
-
-	i = 0;
-	fraction = 1.0;
-	sign = 1;
-	is_dot = 0;
-	*num = 0.0;
-	if (s_num[i] == '-' || s_num[i] == '+')
-		if (s_num[i++] == '-')
-			sign = -1;
-	while(s_num[i])
-	{
-		if (s_num[i] == '.')
-			is_dot = 1;
-		else if (isdigit(s_num[i]))
-		{
-			if (is_dot)
-			{
-				fraction *= 0.1;
-				*num += fraction * (s_num[i] - '0');
-			}
-			else
-				*num = *num * 10 + (s_num[i] - '0');
-			if (*num * sign > FLT_MAX || *num * sign < FLT_MIN)
-				return (-1);
-		}
-		else if (s_num[i] == 'f' && i == static_cast<int>(s_num.size()) - 1)
-			break;
-		else
-			return (-1);
-		i++;
-	}
-	*num *= sign;
-	return (0);
-}
-
-
-int check_double_float(std::string format)
-{
-	int index;
-	int dot;
-
-	dot = 0;
-	index = -1;
-	while(++index < static_cast<int>(format.size()))
-	{
-		if (!isdigit(format[index]))
-		{
-			if (!dot && index < static_cast<int>(format.size()) && format[index] == '.')
-				dot = 1;
-			else if (dot && format[index] == '.')
-				return (0);
-			else
-				break;
-		}
-	}
-	if (dot && index == static_cast<int>(format.size()))
-	{
-		if (isdigit(format[index-1]))
-			return (2);
-	}
-	else if (dot && index == static_cast<int>(format.size()) - 1 && format[index] == 'f')
+	if (format.empty())
+		exit(0);
+	else if (format == "nan" || format == "+inf" || format == "-inf")
+		return (2);
+	else if (format == "nanf" || format == "+inff" || format == "-inff" )
 		return (1);
-	return (0);
+	unsigned int	index = 0;
+	const char		*str = format.c_str();
+	int				is_pt = 0;
+
+	while(str[index])
+	{
+		if (!index && (str[index] == '-' || str[index] == '+'))
+			index++;
+		if (!std::isdigit(str[index]))
+		{
+			if (str[index] == '.' && index && index != (format.size() - 1) && !is_pt)
+				is_pt = 1;
+			else if (str[index] == 'f' && index == (format.size() - 1)
+					&& is_pt && index > 0 && std::isdigit(str[index-1]))
+				return (1);
+			else
+				imp(), exit(1);
+		}
+		index++;
+	}
+	return (is_pt);
 }
 
-int check_int(std::string format)
+void	char_conv(std::string format)
 {
-	int index;
+	char	_char = static_cast<char>(format[0]);
+	int		_int = static_cast<int>(_char);
+	float	_float = static_cast<float>(_int);
+	double	_double = static_cast<double>(_float);
 
-	index = -1;
-	while(++index < static_cast<int>(format.size()))
+	std::cout << "char: " << _char << std::endl;
+	std::cout << "int: " << _int << std::endl;
+	std::cout << "float: " << _float << std::endl;
+	std::cout << "double: " << _double << std::endl;
+}
+
+void	int_conv(int _int, std::string format)
+{
+	float	_float = static_cast<float>(_int);
+	double	_double = static_cast<double>(_float);
+
+	if (_int == atol(format.c_str()))
 	{
-		if (!isdigit(format[index]))
-			return (0);
+		std::cout << "char: Non displayable" << std::endl;
+		std::cout << "int: " << _int << std::endl;
+		std::cout << std::fixed << std::setprecision(1);
+		std::cout << "float: " << _float << "f" << std::endl;
+		std::cout << "double: " << _double << std::endl;
 	}
-	return (1);
+	else
+		imp();
 }
 
 void ScalarConverter::convert(std::string format)
 {
-	long double  numb;
-	double  fl;
+    int     _int = 0;
+    char    _char = '\0';
+    float   _float = 0.0f;
+    double  _double = 0.0;
 
+    bool    imp_int = false;
+    bool    imp_float = false;
+    bool    imp_double = false;
+    bool    imp_char = false;
+    bool    non_char = false;
 
-	get_float(format, &fl);
-	get_double(format, &numb);
+	//CHAR
+	if (format.size() == 1 && std::isalpha(format[0]))
+		return (char_conv(format));
 
-	if (check_char(format))
-		std::cout << "char "<< std::endl;
+	int type = check_type(format);
 
-	if (check_int(format))
-		std::cout << "int " << get_int(format) << std::endl;
+	if (type == 1)
+	{
+		if (format[format.size() - 1] == 'f')
+			format.resize(format.size() - 1);
+	}
+	std::stringstream ss(format);
+
+	ss >> _int;
+	if (ss.fail())
+		imp_int = true;
+	ss.clear(); ss.seekg(0);
+
+	if (imp_int || _int < -127 || _int > 127)
+		imp_char = true;
+	else if (_int < 32 || _int > 126)
+		non_char = true;
+	else
+		_char = static_cast<char>(_int);
+
+	ss >> _float;
+	if (ss.fail())
+		imp_float = true;
+	ss.clear(); ss.seekg(0);
+
+	ss >> _double;
+	if (ss.fail())
+		imp_double = true;
+	ss.clear(); ss.seekg(0);
+
+	if (non_char)
+		std::cout << "char: Non displayable" << std::endl;
+	else if (imp_char)
+		std::cout << "char: impossible" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(_char) << "'" << std::endl;
+
+	if (imp_int)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(_int) << std::endl;
 	
-	if (check_double_float(format) == 1)
-		std::cout << "float " << fl << std::endl;
-	
-	if (check_double_float(format) == 2 && !get_double(format, &numb))
-		std::cout << "double " << numb << std::endl;
+	if (!imp_float && !fmod(_float, 1.0))
+		std::cout << std::fixed << std::setprecision(1);
+
+	if (imp_float)
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(_float) << "f" << std::endl;
+
+	if (imp_double)
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << static_cast<double>(_double) << std::setprecision(13) << std::endl;
+}
+
+ScalarConverter::ScalarConverter()
+{
+    std::cout << "Default constructor called" << std::endl;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &src)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = src;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &src)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    return (*this);
+}
+
+ScalarConverter::~ScalarConverter()
+{
+    std::cout << "Destructor called" << std::endl;
 }
 
 
+/*
+	seekg(0) moves the internal "get" (read) pointer
+	of the stream back to the start.
 
-// void    impos_print(std::string format)
-// {
-//     std::cout << "char: impossible" << std::endl;
-//     std::cout << "Int: impossible" << std::endl;
-//     std::cout << "Float: impossible"  << std::endl;
-//     std::cout << "Double: impossible" << std::endl;
-// }
-
-// void    int_print(std::string format)
-// {
-//     int _int = static_cast<int> (format[0]);
-
-//     if (std::atoi(format) != std::stol(format)) //overflow
-//         return (impos_print(format));
-//     if (_int > 32 && _int < 127)
-//         std::cout << "char:" << static_cast<char> (_int) << std::endl;
-//     else
-//         std::cout << "char: Non displayable" << std::endl;
-//     std::cout << "int: " << _int << std::endl;
-//     std::cout << ""
-// }
+	by using c_str() i can convert string to const char * and i guarantee the null termination
+*/
 
 /*
-TYPE CONVESION ON CPP
-1- implicit type conversion
-	done auto by the compiler
-	Ex. -> char a = 12;
+	TYPE CONVESION ON CPP
+	1- implicit type conversion
+		done auto by the compiler
+		Ex. -> char a = 12;
 		
-		-> int c = a + 91 
-	[-] it can cause a loss of information
+			-> int c = a + 91 
+		[-] it can cause a loss of information
 
-2- explicit type conversion
-	- static_cast   (compile time) 
+	2- explicit type conversion
+		- static_cast   (compile time)
 
-	we cannot static cast the derived class to base class when
-	we have prv inheritance
+		we cannot static cast the derived class to base class when
+		we have prv inheritance
 */
