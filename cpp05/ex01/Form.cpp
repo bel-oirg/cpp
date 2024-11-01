@@ -5,7 +5,7 @@ Form::Form() : name("default"), is_signed(false), grade_sign(150), grade_exec(15
     // std::cout << "The defaut constuctor is called" << std::endl;
 }
 
-Form::Form(const std::string name, int grade_sign, int grade_exec) : name(name), grade_sign(grade_sign), grade_exec(grade_exec)
+Form::Form(const std::string name, int grade_sign, int grade_exec) : name(name), is_signed(false), grade_sign(grade_sign), grade_exec(grade_exec)
 {
     if (grade_sign > 150 || grade_exec > 150)
         throw GradeTooLowException();
@@ -18,10 +18,9 @@ Form::~Form()
 //    std::cout << "The default destructor is called" << std::endl;
 }
 
-Form::Form(const Form &copy): name("default"), grade_sign(150), grade_exec(150)
+Form::Form(const Form &copy): name(copy.getName()), is_signed(false), grade_sign(copy.getGrade_sign()), grade_exec(copy.getGrade_exec())
 {
     // std::cout << "Copy constructor is called" << std::endl;
-    this->is_signed = copy.is_signed;
 }
 
 Form &Form::operator=(const Form &eq)
@@ -75,13 +74,7 @@ bool Form::getIs_signed() const
 void Form::beSigned(Bureaucrat &bur)
 {
 	if (bur.getGrade() <= this->grade_sign)
-	{
-		std::cout << bur.getName() << " signed " << this->name << std::endl;
 		this->is_signed = 1;
-	}
 	else
-	{
-		std::cout << bur.getName() << " couldn't sign " << this->name << " because ";
 		throw GradeTooLowException();
-	}
 }

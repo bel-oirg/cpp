@@ -2,7 +2,7 @@
 
 AForm::AForm() : name("default"), is_signed(false), grade_sign(150), grade_exec(150) {}
 
-AForm::AForm(const std::string name, int grade_sign, int grade_exec) : name(name), grade_sign(grade_sign), grade_exec(grade_exec)
+AForm::AForm(const std::string name, int grade_sign, int grade_exec) : name(name), is_signed(false), grade_sign(grade_sign), grade_exec(grade_exec)
 {
     if (grade_sign > 150 || grade_exec > 150)
         throw GradeTooLowException();
@@ -12,7 +12,7 @@ AForm::AForm(const std::string name, int grade_sign, int grade_exec) : name(name
 
 AForm::~AForm() {}
 
-AForm::AForm(const AForm &copy): name("default"), grade_sign(150), grade_exec(150)
+AForm::AForm(const AForm &copy): name(copy.getName()), is_signed(false), grade_sign(copy.getGrade_sign()), grade_exec(copy.getGrade_exec())
 {
     this->is_signed = copy.is_signed;
 }
@@ -68,13 +68,7 @@ bool AForm::getIs_signed() const
 void AForm::beSigned(Bureaucrat &bur)
 {
 	if (bur.getGrade() <= this->grade_sign)
-	{
-		std::cout << bur.getName() << " signed " << this->name << std::endl;
 		this->is_signed = 1;
-	}
 	else
-	{
-		std::cerr << bur.getName() << " couldn't sign " << this->name << " because ";
 		throw GradeTooLowException();
-	}
 }

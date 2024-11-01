@@ -25,7 +25,7 @@ class Bureaucrat
 	void		inc_grade();
 	void		dec_grade();
 
-	//EXCEPTIONS
+	//highest means Grade < 1
 	class	GradeTooHighException : public std::exception
 	{
 		//we used throw to overide & do not throw an expection
@@ -33,6 +33,7 @@ class Bureaucrat
 		virtual const char* what() const throw();
 	};
 	
+	//lowest means Grade > 150
 	class	GradeTooLowException : public std::exception
 	{
 		public:

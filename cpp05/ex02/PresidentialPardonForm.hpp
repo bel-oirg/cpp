@@ -7,11 +7,10 @@ class PresidentialPardonForm : public AForm
 	private:
 	std::string   target;
 
-	PresidentialPardonForm();
-
     public:
 	PresidentialPardonForm(std::string target);
 	//ORTHDX
+	PresidentialPardonForm(); //TODO All of them take only one parameter in their constructor:
 	~PresidentialPardonForm();
 	PresidentialPardonForm(const PresidentialPardonForm &cpy);
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &eq);
