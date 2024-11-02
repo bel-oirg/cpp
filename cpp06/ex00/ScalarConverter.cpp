@@ -91,7 +91,7 @@ void ScalarConverter::convert(std::string format)
 	if (type == 1)
 	{
 		if (format[format.size() - 1] == 'f')
-			format.resize(format.size() - 1);
+			format.resize(format.size() - 1); //TODO resize ??
 	}
 	std::stringstream ss(format);
 
