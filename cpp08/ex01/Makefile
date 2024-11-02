@@ -1,12 +1,12 @@
-NAME = conv
+NAME = ex01
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = ScalarConverter.cpp main.cpp
+SRCS = Span.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADER = ScalarConverter.hpp
+HEADER = Span.hpp
 
 all : $(NAME)
 
