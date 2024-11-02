@@ -26,7 +26,7 @@ class not_enough_nums : public std::exception
 class Span
 {
     private:
-        std::list<int> listed;
+        std::vector<int> listed;
         unsigned int list_size;
 
     public:
@@ -34,7 +34,7 @@ class Span
     Span();
     ~Span();
 
-    // void fastadd(int min, int max);
+    void fastadd(unsigned int range);
     void addNumber(int num);
     int shortestSpan();
     int longestSpan();
