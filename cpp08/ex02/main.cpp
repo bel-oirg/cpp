@@ -3,7 +3,7 @@
 int main()
 {
     MutantStack<int> mstack;
-    mstack.push(5);
+    mstack.push(234325);
     mstack.push(17);
     std::cout << mstack.top() << std::endl;
     mstack.pop();
@@ -19,9 +19,11 @@ int main()
     --it;
     while (it != ite)
     {
-    std::cout << *it << std::endl;
-    ++it;
+        std::cout << *it << std::endl;
+        ++it;
     }
     std::stack<int> s(mstack);
+    std::cout << "this is the top of s " << s.size() << std::endl;
+    std::cout << "this is the top of staacked " << mstack.size() << std::endl;
     return 0;
 }

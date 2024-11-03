@@ -1,41 +1,32 @@
 #pragma once
 
 #include <stack>
+#include <deque>
 #include <iostream>
 
-template<typename T>
-class MutantStack
-{
-    private:
-        std::stack<T> stk;
+/*
+    here i am inheriting from stack class and 
+*/
 
+template<typename T>
+class MutantStack : public std::stack<T, std::deque<T> >
+{
     public:
-        MutantStack(){}
-        ~MutantStack(){}
+        typedef typename std::deque<T>::iterator iterator;
+
+        MutantStack() {}
+        ~MutantStack() {}
         MutantStack(const MutantStack &stack)
         {
             *this = stack;
         }
-
-        f
-        size_type size() const
+        iterator begin() 
         {
-            return (stk.size());
+            return (this->c.begin());
         }
-        bool empty() const
+        iterator end()
         {
-            return (stk.empty());
+            return (this->c.end());  //TODO if i removed this i won't work WHY
         }
-        void push(const T& val)
-        {
-            stk.push(T);
-        }
-        void pop()
-        {
-            stk.pop();
-        }
-        const T& top() const
-        {
-            return (stk.top());
-        }
+        //maybe add const_iterator and some consts
 };

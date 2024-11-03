@@ -15,7 +15,9 @@ void Span::fastadd(unsigned int range)
         throw out_of_range();
     srand(time(NULL));
     for (unsigned int i = 0 ; i < range ; i++)
+    {
         addNumber(rand() % 10099000);
+    }
 }
 
 void Span::addNumber(int num)

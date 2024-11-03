@@ -2,11 +2,11 @@
 
 int main()
 {
-    Span s(220);
+    Span s(1120000);
 
-    s.fastadd(133);
     try
     {
+        s.fastadd(200000);
         std::cout << "The shortest " << s.shortestSpan() << std::endl;
         std::cout << "The longest " << s.longestSpan() << std::endl;
     }
