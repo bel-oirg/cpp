@@ -7,9 +7,10 @@
 
 int main()
 {
+    std::cout << "-----A-----" << std::endl;
     try
     {
-        Bureaucrat b("the bur", 188);
+        Bureaucrat b("the bur", 2);
         ShrubberyCreationForm ff("TREE");
         ff.beSigned(b);
         b.executeForm(ff);
@@ -20,6 +21,7 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
+    std::cout << "-----B-----" << std::endl;
     try
     {
         Bureaucrat b("the bur", 2);
@@ -32,11 +34,27 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
+    std::cout << "-----C-----" << std::endl;
     try
     {
-        Bureaucrat b("the bur", -1);
+        Bureaucrat b("the bur", 1);
+        PresidentialPardonForm f("nameOFFORM");
+        f.beSigned(b);
+        std::cout << f << std::endl;
+        f.execute(b);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+
+    std::cout << "-----D-----" << std::endl;
+    try
+    {
+        Bureaucrat b("the bur", 1);
         ShrubberyCreationForm f("nameOFFORM");
         f.beSigned(b);
+        std::cout << f << std::endl;
         f.execute(b);
     }
     catch (std::exception &e)

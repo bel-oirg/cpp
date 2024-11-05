@@ -6,7 +6,7 @@ AForm::AForm(const std::string name, int grade_sign, int grade_exec) : name(name
 {
     if (grade_sign > 150 || grade_exec > 150)
         throw GradeTooLowException();
-    else if (grade_sign < 0 || grade_exec < 0)
+    else if (grade_sign < 1 || grade_exec < 1)
         throw GradeTooHighException();
 }
 
@@ -68,7 +68,7 @@ bool AForm::getIs_signed() const
 void AForm::beSigned(Bureaucrat &bur)
 {
 	if (bur.getGrade() <= this->grade_sign)
-		this->is_signed = 1;
+		this->is_signed = true;
 	else
 		throw GradeTooLowException();
 }

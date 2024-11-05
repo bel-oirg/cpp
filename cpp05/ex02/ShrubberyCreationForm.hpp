@@ -7,10 +7,9 @@ class ShrubberyCreationForm : public AForm
 {
 	private:
 	std::string   target;
-
+	ShrubberyCreationForm();
 
     public:
-	ShrubberyCreationForm();
 	ShrubberyCreationForm(std::string target);
 	//ORTHDX
 	~ShrubberyCreationForm();

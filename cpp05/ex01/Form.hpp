@@ -24,7 +24,7 @@ class Form
 	Form &operator=(const Form &eq);
 
 	//GETTERS
-	std::string	getName() const;
+	std::string			getName() const;
 	int					getGrade_sign() const;
 	int					getGrade_exec() const;
 	bool				getIs_signed() const;
@@ -33,7 +33,6 @@ class Form
 	//EXCEPTIONS
 	class	GradeTooHighException : public std::exception
 	{
-		//we used throw() to overide & do not throw an exception
 		public:
 		virtual const char* what() const throw();
 	};

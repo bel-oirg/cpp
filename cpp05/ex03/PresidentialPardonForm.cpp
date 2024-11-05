@@ -15,7 +15,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &eq)
 {
-    (void)eq;
+    this->target = eq.target;
     return (*this);
 }
 

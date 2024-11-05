@@ -15,7 +15,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &eq)
 {
-    (void)eq;
+    this->target = eq.target;
     return (*this);
 }
 

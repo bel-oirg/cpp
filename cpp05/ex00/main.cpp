@@ -15,7 +15,7 @@ int main()
     std::cout << "-------B--------" << std::endl;
     try
     {
-        Bureaucrat a("\144", 1);
+        Bureaucrat a("THEB", 1);
         std::cout << a << std::endl;
         a.dec_grade();
         std::cout << a.getGrade() << std::endl;

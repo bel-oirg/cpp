@@ -14,11 +14,10 @@ class Bureaucrat
 	int					grade;
 
 	public:
+	Bureaucrat();
 	Bureaucrat(const std::string name, int grade);
-	//ORTHDX
 	Bureaucrat(const Bureaucrat& copy);
 	Bureaucrat &operator=(const Bureaucrat &eq);
-	Bureaucrat();
 	~Bureaucrat();
 
 	//GETTERS

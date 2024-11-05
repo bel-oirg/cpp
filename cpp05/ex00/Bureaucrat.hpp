@@ -37,7 +37,7 @@ class Bureaucrat
 	class	GradeTooLowException : public std::exception
 	{
 		public:
-		virtual const char* what() const throw(); //TODO add virtual?
+		virtual const char* what() const throw();
 	};
 };
 

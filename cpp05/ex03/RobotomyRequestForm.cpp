@@ -15,7 +15,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &eq)
 {
-    (void)eq;
+    this->target = eq.target;
     return (*this);
 }
 
