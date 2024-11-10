@@ -1,32 +1,35 @@
 #pragma once
 
 #include <stack>
-#include <deque>
 #include <iostream>
 
 /*
-    here i am inheriting from stack class and 
+    The default underlaying container of stack is deque
 */
 
 template<typename T>
-class MutantStack : public std::stack<T, std::deque<T> >
+class MutantStack : public std::stack<T> // std::stack<T, std::deque<T> >
 {
     public:
-        typedef typename std::deque<T>::iterator iterator;
+        typedef typename std::deque<T>::iterator        iterator;
+        typedef typename std::deque<T>::const_iterator  const_iterator;
 
+        //ORTHDX
         MutantStack() {}
         ~MutantStack() {}
         MutantStack(const MutantStack &stack)
         {
             *this = stack;
         }
-        iterator begin() 
+        MutantStack &operator=(const MutantStack &stack)
         {
-            return (this->c.begin());
+            std::stack<T>::operator=(stack); //using the assign op of the base c;ass
+            return (*this);
         }
-        iterator end()
-        {
-            return (this->c.end());  //TODO if i removed this i won't work WHY
-        }
-        //maybe add const_iterator and some consts
+
+        const_iterator begin() const { return (this->c.begin()); }
+        const_iterator end() const { return (this->c.end()); }
+
+        iterator begin() { return (this->c.begin()); }
+        iterator end() { return (this->c.end()); } 
 };
