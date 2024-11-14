@@ -42,7 +42,7 @@ void BitCoinExchange::parse_db()
         std::getline(ss, tmp_val);
         std::stringstream vv(tmp_val);
 
-        double  val = get_double(tmp_val);
+        double  val = get_double(tmp_val, 1);
         if (val < 0.0 || vv.fail() || !check_date(tmp_date))
         {
             std::cerr << "[-] Invalid date" << std::endl;
@@ -78,24 +78,34 @@ void BitCoinExchange::parse_input()
             std::cerr << "[-] Invalid input" << std::endl;
             continue;
         }
+
+        if (!check_date(tmp_date))
+        {
+            std::cerr << "Error: bad input => " << tmp_date << std::endl;
+            continue;
+        }
         std::getline(ss, tmp_val, ' ');
         std::stringstream vv(tmp_val);
-        double  val = get_double(tmp_val);
-        if (val < 0.0 || vv.fail() || !check_date(tmp_date))
+        double val = get_double(tmp_val, 0);
+        if (val == -2.0)
+            continue;
+        if (val < 0.0 || vv.fail())
         {
-            std::cerr << "[-] Invalid input" << std::endl;
+            std::cerr << "[-] Error: bad input." << std::endl;
             continue;
         }
         ss.clear(); ss.seekg(0);
-        std::map<std::string, double>::iterator it = db.upper_bound(tmp_date);
-        if (it != db.begin())
-            it--;
-        else
+        std::map<std::string, double>::iterator it = db.lower_bound(tmp_date);
+        if (it->first != tmp_date)
         {
-            std::cerr << "[-] we do not have data before " << db.begin()->first << std::endl;
-            continue;
+            if (it != db.begin())
+                it--;
+            else
+            {
+                std::cerr << "[-] we do not have data before " << db.begin()->first << std::endl;
+                continue;
+            }
         }
-
         std::cout << it->first << " => " << val << " = " << it->second * val << std::endl;
     }
     db_file.close();
@@ -132,13 +142,15 @@ int    BitCoinExchange::get_int(const std::string val)
     return (a);
 }
 
-double    BitCoinExchange::get_double(const std::string val)
+double    BitCoinExchange::get_double(const std::string val, int is_db)
 {
     if (val.empty())
         return (-1.0);
     int is_dot = 0;
     for (size_t index = 0; index < val.size(); index++)
     {
+        if (val.front() == '-')
+            return (std::cerr <<  "Error: not a positive number." << std::endl, -2.0);
         if (val[index] == '.' && index && std::isdigit(val[index + 1]))
             is_dot++;
         else if (is_dot > 1 || !std::isdigit(val[index]) )
@@ -148,9 +160,11 @@ double    BitCoinExchange::get_double(const std::string val)
     std::stringstream ss(val);
     double a;
     ss >> a;
-    if (ss.fail() || a > INT_MAX)  //checking for overflow
+    if (ss.fail())  //checking for overflow
         return (-1.0);
     ss.clear(); ss.seekg(0); //TODO maybe remove this
+    if (!is_db && a > 1000)
+        return (std::cerr <<  "Error: too large a number." << std::endl, -2.0);
     return (a);
 }
 
