@@ -29,15 +29,15 @@ void BitCoinExchange::parse_db()
 
     if (!db_file)
     {
-        std::cerr << "Cannot open the db" << std::endl;
+        std::cerr << "[-] Cannot open the db" << std::endl;
         exit(1);
     }
-    
+    std::getline(db_file, line); //skip the first line
     while (std::getline(db_file, line))
     {
-        std::stringstream ss(line);
         if (line.empty())
             continue;
+        std::stringstream ss(line);
         std::getline(ss, tmp_date, ',');
         std::getline(ss, tmp_val);
         std::stringstream vv(tmp_val);
@@ -45,7 +45,7 @@ void BitCoinExchange::parse_db()
         double  val = get_double(tmp_val);
         if (val < 0.0 || vv.fail() || !check_date(tmp_date))
         {
-            std::cerr << "Invalid date" << std::endl;
+            std::cerr << "[-] Invalid date" << std::endl;
             continue;
         }
         ss.clear(); ss.seekg(0);
@@ -56,33 +56,47 @@ void BitCoinExchange::parse_db()
 
 void BitCoinExchange::parse_input()
 {
-    std::string line, tmp_date, tmp_val;
+    std::string line, tmp_date, tmp_val, btwn;
     std::ifstream db_file(input_file);
 
     if (!db_file)
     {
-        std::cerr << "Cannot open the file" << std::endl;
+        std::cerr << "[-] Cannot open the input file" << std::endl;
         exit(1);
     }
     
+    std::getline(db_file, line);
     while (std::getline(db_file, line))
     {
         std::stringstream ss(line);
         if (line.empty())
             continue;
-        std::getline(ss, tmp_date, '|');
-        std::getline(ss, tmp_val);
+        std::getline(ss, tmp_date, ' ');
+        std::getline(ss, btwn, ' ');
+        if (btwn != "|")
+        {
+            std::cerr << "[-] Invalid input" << std::endl;
+            continue;
+        }
+        std::getline(ss, tmp_val, ' ');
         std::stringstream vv(tmp_val);
-
         double  val = get_double(tmp_val);
         if (val < 0.0 || vv.fail() || !check_date(tmp_date))
         {
-            std::cerr << "Invalid input" << std::endl;
+            std::cerr << "[-] Invalid input" << std::endl;
             continue;
         }
         ss.clear(); ss.seekg(0);
-        std::map<std::string, double>::iterator it = db.lower_bound(tmp_date);
-        std::cout << "Found " << it->first << " ; " << it->second * val << std::endl;
+        std::map<std::string, double>::iterator it = db.upper_bound(tmp_date);
+        if (it != db.begin())
+            it--;
+        else
+        {
+            std::cerr << "[-] we do not have data before " << db.begin()->first << std::endl;
+            continue;
+        }
+
+        std::cout << it->first << " => " << val << " = " << it->second * val << std::endl;
     }
     db_file.close();
 }
@@ -134,7 +148,7 @@ double    BitCoinExchange::get_double(const std::string val)
     std::stringstream ss(val);
     double a;
     ss >> a;
-    if (ss.fail())  //checking for overflow
+    if (ss.fail() || a > INT_MAX)  //checking for overflow
         return (-1.0);
     ss.clear(); ss.seekg(0); //TODO maybe remove this
     return (a);
