@@ -1,6 +1,7 @@
 #include "BitcoinExchange.hpp"
 
-int main()
+int main(int argc, char *argv[])
 {
-    BitCoinExchange b;
+    if (argc == 2)
+        BitCoinExchange b(argv[1]);
 }
