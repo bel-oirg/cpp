@@ -9,11 +9,13 @@
 class RPN
 {
     private:
-        std::string       arg;
-        std::stack<char>  rpn;
-        std::stack<char>  stk;
+        std::stack<long long>  stk;
+        std::string                 arg;
 
     public:
+        void err_(int index);
+        void get_val();
         RPN(std::string arg);
+        RPN();
         ~RPN();
 };
