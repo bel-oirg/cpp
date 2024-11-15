@@ -31,29 +31,64 @@ int PmergeMe::valid_int(char *argv[])
     return (0);
 }
 
-PmergeMe::PmergeMe(char *argv[])
+PmergeMe::PmergeMe(char *argv[]) : AB_start(std::clock())
 {  
     if (!valid_int(argv))
     {
-        std::vector<int> B = AB;
-        merge(B);
-        for (size_t i = 0; i < B.size() ; i++)
-            std::cout << B[i] << std::endl;
+        old_AB = AB;
+        merge(AB);
     }
     else
         std::cerr << "[-] You entered an invalid input" << std::endl;
 }
 
-PmergeMe::~PmergeMe() {}
+PmergeMe::~PmergeMe()
+{
+    // std::cout << "Before: " << 
+    // for (size_t i = 0; i < AB.size() ; i++)
+    //     std::cout << AB[i] << " ";
+    print_nums(1);
+    print_nums(0);
+    AB_end = clock();
+    std::cout << static_cast<double>(AB_end - AB_start) << std::endl;
+}
 
-void    PmergeMe::merge_s(std::vector<int> A, std::vector<int> L, std::vector<int> R)
+void PmergeMe::print_nums(int first)
+{
+    std::vector<int>    current;
+    if (first)
+    {
+        std::cout << "Before:   ";
+        current = old_AB;
+    }
+    else
+    {
+        std::cout << "After:    ";
+        current = AB;
+    }
+    size_t vec_size = current.size();
+    if (vec_size < 6)
+    {
+        for (size_t i = 0; i < vec_size ; i++)
+            std::cout << current[i] << " ";
+    }
+    else
+    {
+        for (size_t i = 0; i < 4 ; i++)
+            std::cout << current[i] << " ";
+        std::cout << "[...]";
+    }
+    std::cout << std::endl;
+}
+
+void    PmergeMe::merge_s(std::vector<int> &A, std::vector<int> &L, std::vector<int> &R)
 {
     int i, j, k;
 
     i = j = k = 0;
     int nR = R.size();
     int nL = L.size();
-    while(i < nL && j < nL)
+    while(i < nL && j < nR)
     {
         if (L[i] < R[j])
             A[k] = L[i++];
@@ -62,10 +97,10 @@ void    PmergeMe::merge_s(std::vector<int> A, std::vector<int> L, std::vector<in
         k++;
     }
     while(i < nL)
-        A[k] = L[i++];
+        A[k++] = L[i++];
 
     while(j < nR)
-        A[k] = R[j++];
+        A[k++] = R[j++];
 }
 
 void    PmergeMe::merge(std::vector<int> &A)
@@ -73,12 +108,8 @@ void    PmergeMe::merge(std::vector<int> &A)
     size_t n = A.size();
     if (n < 2)
         return ;
-    std::vector<int>    L;
-    std::vector<int>    R;
-    for (size_t index = 0; index < n/2 ; index++)
-        L.push_back(A[index]);
-    for (size_t index = n/2 ; index < n ; index++)
-        R.push_back(A[index]);
+    std::vector<int> L(A.begin(), A.begin() + n/2);
+    std::vector<int> R(A.begin() + n/2, A.end());
     merge(L);
     merge(R);
     merge_s(A, L, R);
