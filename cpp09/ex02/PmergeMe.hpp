@@ -21,15 +21,20 @@ class PmergeMe
 
 
     public:
-        void    print_nums(int first);
         void    merge_vector(std::vector<int> &A, std::vector<int> &L, std::vector<int> &R);
         void    vectored(std::vector<int> &A);
 
         void    merge_deque(std::deque<int> &A, std::deque<int> &L, std::deque<int> &R);
         void    dequed(std::deque<int> &A);
+
+        void    print_nums(int first);
         int     valid_int(char *argv[]);
         int     atoii(char *arg);
         PmergeMe(char *argv[]);
+
+        //ORTHDX
         PmergeMe();
+        PmergeMe(const PmergeMe &cpy);
+        PmergeMe &operator=(const PmergeMe &cpy);
         ~PmergeMe();
 };

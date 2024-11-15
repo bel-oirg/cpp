@@ -1,6 +1,5 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
 
 int PmergeMe::atoii(char *arg)
 {
@@ -47,17 +46,6 @@ PmergeMe::PmergeMe(char *argv[]) : stat(0)
     }
     else
         std::cerr << "[-] You entered an invalid input" << std::endl;
-}
-
-PmergeMe::~PmergeMe()
-{
-    if (stat)
-    {
-        print_nums(1);
-        print_nums(0);
-        std::cout << "Time to process a range of "<< AB.size() << " elements with std::vector : " << static_cast<double>(AB_end - start) << " us" << std::endl;
-        std::cout << "Time to process a range of "<< AB.size() << " elements with std::deque  : " << static_cast<double>(CD_end - start) << " us" << std::endl;
-    }
 }
 
 void PmergeMe::print_nums(int first)
@@ -121,7 +109,6 @@ void    PmergeMe::vectored(std::vector<int> &A)
     merge_vector(A, L, R);
 }
 
-
 void    PmergeMe::dequed(std::deque<int> &A)
 {
     size_t n = A.size();
@@ -153,4 +140,36 @@ void    PmergeMe::merge_deque(std::deque<int> &A, std::deque<int> &L, std::deque
         A[k++] = L[i++];
     while(j < nR)
         A[k++] = R[j++];
+}
+
+//ORTHDX
+
+PmergeMe::PmergeMe() {}
+
+PmergeMe::PmergeMe(const PmergeMe &cpy)
+{
+    *this = cpy;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &cpy)
+{
+    this->AB = cpy.AB;
+    this->old_AB = cpy.old_AB;
+    this->start = cpy.start;
+    this->AB_end = cpy.AB_end;
+    this->CD_end = cpy.CD_end;
+    this->stat = cpy.stat;
+    this->CD = cpy.CD;
+    return (*this);
+}
+
+PmergeMe::~PmergeMe()
+{
+    if (stat)
+    {
+        print_nums(1);
+        print_nums(0);
+        std::cout << "Time to process a range of "<< AB.size() << " elements with std::vector : " << static_cast<double>(AB_end - start) << " us" << std::endl;
+        std::cout << "Time to process a range of "<< AB.size() << " elements with std::deque  : " << static_cast<double>(CD_end - AB_end) << " us" << std::endl;
+    }
 }
