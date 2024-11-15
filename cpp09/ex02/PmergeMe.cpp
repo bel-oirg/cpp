@@ -27,16 +27,23 @@ int PmergeMe::valid_int(char *argv[])
         if (val < 0)
             return (-1);
         AB.push_back(val);
+        CD.push_back(val);
     }
     return (0);
 }
 
-PmergeMe::PmergeMe(char *argv[]) : AB_start(std::clock())
+PmergeMe::PmergeMe(char *argv[]) : stat(0)
 {  
     if (!valid_int(argv))
     {
         old_AB = AB;
-        merge(AB);
+
+        start = std::clock();
+        vectored(AB);
+        AB_end = clock();
+        dequed(CD);
+        CD_end = clock();
+        stat = 1;
     }
     else
         std::cerr << "[-] You entered an invalid input" << std::endl;
@@ -44,13 +51,13 @@ PmergeMe::PmergeMe(char *argv[]) : AB_start(std::clock())
 
 PmergeMe::~PmergeMe()
 {
-    // std::cout << "Before: " << 
-    // for (size_t i = 0; i < AB.size() ; i++)
-    //     std::cout << AB[i] << " ";
-    print_nums(1);
-    print_nums(0);
-    AB_end = clock();
-    std::cout << static_cast<double>(AB_end - AB_start) << std::endl;
+    if (stat)
+    {
+        print_nums(1);
+        print_nums(0);
+        std::cout << "Time to process a range of "<< AB.size() << " elements with std::vector : " << static_cast<double>(AB_end - start) << " us" << std::endl;
+        std::cout << "Time to process a range of "<< AB.size() << " elements with std::deque  : " << static_cast<double>(CD_end - start) << " us" << std::endl;
+    }
 }
 
 void PmergeMe::print_nums(int first)
@@ -81,7 +88,7 @@ void PmergeMe::print_nums(int first)
     std::cout << std::endl;
 }
 
-void    PmergeMe::merge_s(std::vector<int> &A, std::vector<int> &L, std::vector<int> &R)
+void    PmergeMe::merge_vector(std::vector<int> &A, std::vector<int> &L, std::vector<int> &R)
 {
     int i, j, k;
 
@@ -98,19 +105,52 @@ void    PmergeMe::merge_s(std::vector<int> &A, std::vector<int> &L, std::vector<
     }
     while(i < nL)
         A[k++] = L[i++];
-
     while(j < nR)
         A[k++] = R[j++];
 }
 
-void    PmergeMe::merge(std::vector<int> &A)
+void    PmergeMe::vectored(std::vector<int> &A)
 {
     size_t n = A.size();
     if (n < 2)
         return ;
     std::vector<int> L(A.begin(), A.begin() + n/2);
     std::vector<int> R(A.begin() + n/2, A.end());
-    merge(L);
-    merge(R);
-    merge_s(A, L, R);
+    vectored(L);
+    vectored(R);
+    merge_vector(A, L, R);
+}
+
+
+void    PmergeMe::dequed(std::deque<int> &A)
+{
+    size_t n = A.size();
+    if (n < 2)
+        return ;
+    std::deque<int> L(A.begin(), A.begin() + n/2);
+    std::deque<int> R(A.begin() + n/2, A.end());
+    dequed(L);
+    dequed(R);
+    merge_deque(A, L, R);
+}
+
+void    PmergeMe::merge_deque(std::deque<int> &A, std::deque<int> &L, std::deque<int> &R)
+{
+    int i, j, k;
+
+    i = j = k = 0;
+    int nR = R.size();
+    int nL = L.size();
+    while(i < nL && j < nR)
+    {
+        if (L[i] < R[j])
+            A[k] = L[i++];
+        else
+            A[k] = R[j++];
+        k++;
+    }
+    while(i < nL)
+        A[k++] = L[i++];
+    while(j < nR)
+        A[k++] = R[j++];
 }
