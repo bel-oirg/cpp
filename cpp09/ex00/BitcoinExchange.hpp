@@ -3,15 +3,13 @@
 #include <string.h>
 #include <fstream>
 #include <sstream>
-// #include <ctype>
-// #include <utility>
 #include <map>
 
 class BitCoinExchange
 {
 	private:
 		std::map <std::string, double>  db;
-		std::map <std::string, double>  stored_db;
+		std::map <std::string, double>  stored_db; //TODO
 		std::string             input_file;
 
 	public:
