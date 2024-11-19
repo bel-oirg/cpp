@@ -5,12 +5,6 @@ const char *BitCoinExchange::invalid_date::what() const throw()
     return "Invalid date";
 }
 
-BitCoinExchange::~BitCoinExchange()
-{
-    // for (std::map<std::string, double>::iterator it = db.begin(); it != db.end(); it++)
-    //     std::cout << "db :" << it->first << "|" << it->second << std::endl;
-}
-
 int BitCoinExchange::get_val(std::string string_)
 {
     int val;
@@ -22,7 +16,7 @@ int BitCoinExchange::get_val(std::string string_)
     return (val);
 }
 
-void BitCoinExchange::parse_db()
+int BitCoinExchange::parse_db()
 {
     std::string line, tmp_date, tmp_val;
     std::ifstream db_file("data.csv");
@@ -30,9 +24,11 @@ void BitCoinExchange::parse_db()
     if (!db_file)
     {
         std::cerr << "[-] Cannot open the db" << std::endl;
-        exit(1);
+        return (0);
     }
     std::getline(db_file, line); //skip the first line
+    if (line != "date,exchange_rate")
+        std::cerr << "[-] The title is invalid" << std::endl;
     while (std::getline(db_file, line))
     {
         if (line.empty())
@@ -52,6 +48,7 @@ void BitCoinExchange::parse_db()
         db.insert(std::make_pair(tmp_date, val));
     }
     db_file.close();
+    return (1);
 }
 
 void BitCoinExchange::parse_input()
@@ -62,10 +59,12 @@ void BitCoinExchange::parse_input()
     if (!db_file)
     {
         std::cerr << "[-] Cannot open the input file" << std::endl;
-        exit(1);
+        return ;
     }
     
     std::getline(db_file, line);
+    if (line != "date | value")
+        std::cerr << "[-] Invalid title" << std::endl;
     while (std::getline(db_file, line))
     {
         std::stringstream ss(line);
@@ -106,15 +105,15 @@ void BitCoinExchange::parse_input()
                 continue;
             }
         }
-        std::cout << it->first << " => " << val << " = " << it->second * val << std::endl;
+        std::cout << tmp_date << " => " << val << " = " << it->second * val << std::endl;
     }
     db_file.close();
 }
 
 BitCoinExchange::BitCoinExchange(std::string in_file) : input_file(in_file)
 {
-    parse_db();
-    parse_input();
+    if (parse_db())
+        parse_input();
 }
 
 bool    BitCoinExchange::is_valid_digits(const std::string val)
@@ -201,3 +200,18 @@ bool    BitCoinExchange::check_date(std::string date)
     return (day <= max_days);
 }
 
+BitCoinExchange::BitCoinExchange() {}
+
+BitCoinExchange::~BitCoinExchange() {}
+
+BitCoinExchange::BitCoinExchange(const BitCoinExchange &cpy)
+{
+    *this = cpy;
+}
+
+BitCoinExchange &BitCoinExchange::operator=(const BitCoinExchange &cpy)
+{
+    this->db = cpy.db;
+    this->input_file = cpy.input_file;
+    return(*this);
+}

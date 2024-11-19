@@ -66,7 +66,16 @@ RPN::RPN(std::string arg) : arg(arg) {}
 
 RPN::RPN() {}
 
-RPN::~RPN()
+RPN::RPN(const RPN &cpy)
 {
-    // std::cout << "Destructed successfully" << std::endl;
+    *this = cpy;
 }
+
+RPN &RPN::operator=(const RPN &cpy)
+{
+    this->stk = cpy.stk;
+    this->arg = cpy.arg;
+    return (*this);
+}
+
+RPN::~RPN() {}

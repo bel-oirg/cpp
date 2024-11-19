@@ -16,6 +16,10 @@ class RPN
         void err_(int index);
         void get_val();
         RPN(std::string arg);
+
+        //ORTHDX
         RPN();
+        RPN(const RPN &cpy);
+        RPN &operator=(const RPN &cpy);
         ~RPN();
 };
