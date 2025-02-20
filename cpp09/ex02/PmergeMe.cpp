@@ -100,37 +100,13 @@ void PmergeMe::print_nums(int first)
     std::cout << std::endl;
 }
 
-void    PmergeMe::merge_vector(std::vector<int> &A, std::vector<int> &L, std::vector<int> &R)
-{
-    int i, j, k;
-
-    i = j = k = 0;
-    int nR = R.size();
-    int nL = L.size();
-    while(i < nL && j < nR)
-    {
-        if (L[i] < R[j])
-            A[k] = L[i++];
-        else
-            A[k] = R[j++];
-        k++;
-    }
-    while(i < nL)
-        A[k++] = L[i++];
-    while(j < nR)
-        A[k++] = R[j++];
-}
-
 void    PmergeMe::vectored(std::vector<int> &A)
 {
     size_t n = A.size();
     if (n < 2)
         return ;
-    std::vector<int> L(A.begin(), A.begin() + n/2);
-    std::vector<int> R(A.begin() + n/2, A.end());
-    vectored(L);
-    vectored(R);
-    merge_vector(A, L, R);
+
+    sort_pairs(A, 1);
 }
 
 void    PmergeMe::dequed(std::deque<int> &A)
@@ -138,32 +114,8 @@ void    PmergeMe::dequed(std::deque<int> &A)
     size_t n = A.size();
     if (n < 2)
         return ;
-    std::deque<int> L(A.begin(), A.begin() + n/2);
-    std::deque<int> R(A.begin() + n/2, A.end());
-    dequed(L);
-    dequed(R);
-    merge_deque(A, L, R);
-}
 
-void    PmergeMe::merge_deque(std::deque<int> &A, std::deque<int> &L, std::deque<int> &R)
-{
-    int i, j, k;
-
-    i = j = k = 0;
-    int nR = R.size();
-    int nL = L.size();
-    while(i < nL && j < nR)
-    {
-        if (L[i] < R[j])
-            A[k] = L[i++];
-        else
-            A[k] = R[j++];
-        k++;
-    }
-    while(i < nL)
-        A[k++] = L[i++];
-    while(j < nR)
-        A[k++] = R[j++];
+    sort_pairs(A, 1);
 }
 
 //ORTHDX
@@ -197,4 +149,32 @@ PmergeMe::~PmergeMe()
         std::cout << "Time to process a range of "<< AB.size() << " elements with std::vector : " << static_cast<double>(AB_end - AB_start) << " us" << std::endl;
         std::cout << "Time to process a range of "<< AB.size() << " elements with std::deque  : " << static_cast<double>(CD_end - AB_end) << " us" << std::endl;
     }
+}
+
+size_t jacob_num(size_t n)
+{
+    if (n < 2)
+        return n;
+    return (jacob_num(n - 1) + 2 * jacob_num(n - 2));
+}
+
+template <typename T>
+bool _cmp(T x, T y)
+{
+    return (*x < *y);
+}
+
+template <typename T>
+T adv(T it, int pos)
+{
+    std::advance(it, pos);
+    return it;
+}
+
+template <typename T>
+void swaped(T left, T right)
+{
+    T bkp = left;
+    while(bkp != right)
+        std::iter_swap(left--, right--);
 }

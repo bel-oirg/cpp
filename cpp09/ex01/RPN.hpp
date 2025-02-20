@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
+#include <climits>
 
 class RPN
 {

@@ -54,7 +54,7 @@ int BitCoinExchange::parse_db()
 void BitCoinExchange::parse_input()
 {
     std::string line, tmp_date, tmp_val, btwn;
-    std::ifstream db_file(input_file);
+    std::ifstream db_file(input_file.c_str());
 
     if (!db_file)
     {
@@ -148,7 +148,7 @@ double    BitCoinExchange::get_double(const std::string val, int is_db)
     int is_dot = 0;
     for (size_t index = 0; index < val.size(); index++)
     {
-        if (val.front() == '-')
+        if (val[0] == '-')
             return (std::cerr <<  "Error: not a positive number." << std::endl, -2.0);
         if (val[index] == '.' && index && std::isdigit(val[index + 1]))
             is_dot++;
