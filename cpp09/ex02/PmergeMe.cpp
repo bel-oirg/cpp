@@ -157,24 +157,3 @@ size_t jacob_num(size_t n)
         return n;
     return (jacob_num(n - 1) + 2 * jacob_num(n - 2));
 }
-
-template <typename T>
-bool _cmp(T x, T y)
-{
-    return (*x < *y);
-}
-
-template <typename T>
-T adv(T it, int pos)
-{
-    std::advance(it, pos);
-    return it;
-}
-
-template <typename T>
-void swaped(T left, T right)
-{
-    T bkp = left;
-    while(bkp != right)
-        std::iter_swap(left--, right--);
-}

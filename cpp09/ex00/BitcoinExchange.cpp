@@ -12,7 +12,6 @@ int BitCoinExchange::get_val(std::string string_)
     ss >> val;
     if (ss.fail())
         throw BitCoinExchange::invalid_date();
-    ss.clear(); ss.seekg(0);
     return (val);
 }
 
@@ -53,7 +52,7 @@ int BitCoinExchange::parse_db()
 
 void BitCoinExchange::parse_input()
 {
-    std::string line, tmp_date, tmp_val, btwn;
+    std::string line, tmp_date, tmp_val, btwn, is_end;
     std::ifstream db_file(input_file.c_str());
 
     if (!db_file)
@@ -84,6 +83,14 @@ void BitCoinExchange::parse_input()
             continue;
         }
         std::getline(ss, tmp_val, ' ');
+        std::getline(ss, is_end, ' ');
+        //check if there is anything else
+        if (!is_end.empty())
+        {
+            is_end = "";
+            std::cerr << "Error: bad input => " << tmp_date << std::endl;
+            continue;
+        }
         std::stringstream vv(tmp_val);
         double val = get_double(tmp_val, 0);
         if (val == -2.0)
@@ -137,7 +144,6 @@ int    BitCoinExchange::get_int(const std::string val)
     ss >> a;
     if (ss.fail())  //checking for overflow
         return (-1);
-    ss.clear(); ss.seekg(0); //TODO maybe remove this
     return (a);
 }
 
@@ -161,7 +167,6 @@ double    BitCoinExchange::get_double(const std::string val, int is_db)
     ss >> a;
     if (ss.fail())  //checking for overflow
         return (-1.0);
-    ss.clear(); ss.seekg(0); //TODO maybe remove this
     if (!is_db && a > 1000)
         return (std::cerr <<  "Error: too large a number." << std::endl, -2.0);
     return (a);
@@ -175,6 +180,11 @@ bool    BitCoinExchange::check_date(std::string date)
     std::getline(ss_date, y, '-');
     std::getline(ss_date, m, '-');
     std::getline(ss_date, d);
+    
+    //keeping YYYY/MM/DD structure
+    if (y.size() != 4 || m.size() != 2 || d.size() != 2)
+        return false;
+    
     int year = get_int(y);
     int month = get_int(m);
     int day = get_int(d);

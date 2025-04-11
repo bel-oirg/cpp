@@ -10,8 +10,8 @@
 class RPN
 {
     private:
-        std::stack<long long>  stk;
-        std::string                 arg;
+        std::stack<double>  stk;
+        std::string         arg;
 
     public:
         void err_(int index);

@@ -55,16 +55,25 @@ size_t jacob_num(size_t n);
 
 
 template <typename T>
-void swaped(T left, T right);
-
-
-template <typename T>
-T adv(T it, int pos);
-
+bool _cmp(T x, T y)
+{
+    return (*x < *y);
+}
 
 template <typename T>
-bool _cmp(T x, T y);
+T adv(T it, int pos)
+{
+    std::advance(it, pos);
+    return it;
+}
 
+template <typename T>
+void swaped(T left, T right)
+{
+    T bkp = left;
+    while(bkp != right)
+        std::iter_swap(left--, right--);
+}
 
 template <typename T>
 void PmergeMe::sort_pairs(T &nums, int pair_lvl)
@@ -91,22 +100,20 @@ void PmergeMe::sort_pairs(T &nums, int pair_lvl)
     sort_pairs(nums, pair_lvl * 2);
 
 
-
     std::vector<it_p> main;
     std::vector<it_p> pend;
 
-    main.insert(main.end(), adv(nums.begin(), pair_lvl - 1));
-    main.insert(main.end(), adv(nums.begin(), 2*pair_lvl - 1));
+    main.insert(main.end(), adv(nums.begin(), pair_lvl - 1)); //b1
+    main.insert(main.end(), adv(nums.begin(), 2*pair_lvl - 1)); //a1
 
     for (int i = 4; i <= pair_tile; i+=2)
     {
-        main.insert(main.end(), adv(nums.begin(), pair_lvl * i - 1 ));
-        pend.insert(pend.end(), adv(nums.begin(), pair_lvl * (i - 1) - 1 ));
+        main.insert(main.end(), adv(nums.begin(), pair_lvl * i - 1 )); //insert a2, a3 ..
+        pend.insert(pend.end(), adv(nums.begin(), pair_lvl * (i - 1) - 1 )); //insert b2, b3...
     }
     if (is_odd)
         pend.insert(pend.end(), adv(end, pair_lvl - 1));
     
-
 
     int prev_j = jacob_num(1);
     int inserted_count = 0;
@@ -121,24 +128,20 @@ void PmergeMe::sort_pairs(T &nums, int pair_lvl)
         vit pend_it = pend.begin() + diff_j - 1;
         vit bound_it = main.begin() + current_j + inserted_count;
 
-        int offset = 0;
         while(count--)
         {
             vit index = std::upper_bound(main.begin(), bound_it, *pend_it, _cmp<it_p>);
-            vit inserted = main.insert(index, *pend_it);
+            main.insert(index, *pend_it);
             pend_it = pend.erase(pend_it);
             std::advance(pend_it, -1);
-            if ((inserted - main.begin()) == current_j + inserted_count)
-                offset++;
-            bound_it = main.begin() + current_j + inserted_count - offset;
+            bound_it = main.begin() + current_j + inserted_count;
         }
         prev_j = current_j;
         inserted_count += diff_j;
     }
 
 
-
-    size_t pend_sized = pend.size();
+    size_t pend_sized = pend.size(); //check if pend not empty yet
     for (size_t i = 0; i < pend_sized ; i++)
     {
         vit curr_p = adv(pend.begin(), i);
@@ -158,6 +161,7 @@ void PmergeMe::sort_pairs(T &nums, int pair_lvl)
         }
     }
 
+    //updating the original nums cont
     it_p nums_beg = nums.begin();
     std::vector<int>::iterator tmp_beg = tmp_v.begin();
     while(tmp_beg != tmp_v.end())

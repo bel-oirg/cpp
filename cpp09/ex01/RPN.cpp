@@ -16,24 +16,30 @@ void    RPN::get_val()
 {
     size_t          opr_index;
     std::string     opr = "+-*/";
-    long long       a, b, res = LLONG_MAX;
+    double       a, b, res = LLONG_MAX;
 
     if (arg.empty())
         return (err_(0));
-    for (size_t index = 0; index < arg.size(); index++)
+
+    std::stringstream arg_ss(arg);
+    std::string chunk;
+    while (arg_ss >> chunk)
     {
-        if (index % 2)
-        {
-            if (arg[index] == ' ')
-                index++;
-            else
-                return (err_(1));
-        }
-        if (isdigit(arg[index]))
-            stk.push(static_cast<int>(arg[index]) - 48);
+        if (chunk.empty())
+            return (err_(0));
+        if (chunk.size() > 2)
+            return (err_(1));
+
+        if ((chunk.size() == 2) && (chunk[0] == '-') && (std::isdigit(chunk[1])))
+            stk.push(static_cast<int>(-(chunk[1] - 48)));
+        else if ((chunk.size() == 1) && (std::isdigit(chunk[0])))
+            stk.push(static_cast<int>(chunk[0] - 48));
         else
         {
-            opr_index = opr.find(arg[index]);
+            if (chunk.size() > 1)
+                return (err_(1));
+
+            opr_index = opr.find(chunk);
             if (opr_index == std::string::npos || stk.size() < 2)
                 return (err_(1));
             b = stk.top();
